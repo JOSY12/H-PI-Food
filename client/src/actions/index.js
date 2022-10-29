@@ -12,20 +12,41 @@ const API_KEY1 = `07b53d9ba28e42c7980df758189b49de`;
 // const getallurl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`;
 export const getrecipes = () => {
   return async function (dispatch) {
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`
-    );
-
-    dispatch({ type: GET_RECIPES, payload: response.data.results });
+    // const response = await axios.get(
+    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`
+    // );
+    const responselocal = await axios.get(`http://localhost:3001/recipes`);
+    console.log(responselocal.data);
+    // dispatch({ type: GET_RECIPES, payload: response.data.results });
+    dispatch({ type: GET_RECIPES, payload: responselocal.data });
   };
 };
 
 export const getrecipe = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-    );
+    // const response = await axios.get(
+    //   `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+    // );
+    const responseid = await axios.get(`http://localhost:3001/recipes/${id}`);
 
-    dispatch({ type: GET_RECIPE, payload: response.data });
+    // dispatch({ type: GET_RECIPE, payload: response.data });
+    dispatch({ type: GET_RECIPE, payload: responseid.data });
+  };
+};
+
+export const createrecipe = (title, summary, image, diets, healthScore) => {
+  const newrecipe = {
+    title: title,
+    summary: summary,
+    image: image,
+    diets: diets,
+    healthScore: healthScore,
+  };
+  return async function (dispatch) {
+    const response = await axios.post(
+      "http://localhost:3001/create",
+      newrecipe
+    );
+    dispatch({ type: CREATE_RECIPE, payload: newrecipe });
   };
 };

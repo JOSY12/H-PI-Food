@@ -3,6 +3,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 // const routes = require("./routes/index.js");
+const { Recipe, Op } = require("./db");
+const { where } = require("sequelize");
 
 require("./db.js");
 
@@ -39,10 +41,10 @@ server.use((err, req, res, next) => {
 // [ ] GET /recipes?name="...":
 // Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
 // Si no existe ninguna receta mostrar un mensaje adecuado
-server.get("/recipes?name=:title", async (req, res) => {
+server.get("/recipes?title=:title", async (req, res) => {
   const { title } = req.params;
   try {
-    const getrecipe = await users.findAll();
+    const getrecipe = await Recipe.findAll({ where: { title: title } });
 
     res.status(200).json(getrecipe);
   } catch (error) {
@@ -66,43 +68,21 @@ server.get("/recipes?name=:title", async (req, res) => {
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 // Crea una receta en la base de datos relacionada con sus tipos de dietas.
 
-server.post("/recipes/create", async (req, res) => {
-  const { id, title, summary, image, diets, healthscore } = req.body;
+server.post("/create", async (req, res) => {
+  const { id, title, summary, image, diets, healthScore } = req.body;
   try {
-    const newrecipe = await users.create({
+    const newrecipe = await Recipe.create({
       id: id,
       title: title,
       summary: summary,
       image: image,
       diets: diets,
-      healthscore: healthscore,
+      healthScore: healthScore,
     });
     res.json(newrecipe);
   } catch (error) {
     res.status(400).json({ msg: "no recipe created" });
   }
-
-  // id: { type: DataTypes.INTEGER, allowNull: false },
-  //   title: {
-  //     type: DataTypes.STRING,
-  //     allowNull: false,
-  //   },
-  //   summary: {
-  //     type: DataTypes.STRING,
-  //     allowNull: false,
-  //   },
-  //   image: {
-  //     type: DataTypes.STRING,
-  //     allowNull: true,
-  //   },
-  //   diets: {
-  //     type: DataTypes.STRING,
-  //     allowNull: true,
-  //   },
-  //   healthscore: {
-  //     type: DataTypes.STRING,
-  //     allowNull: true,
-  //   },
 });
 // [ ] GET /recipes/{idReceta}:
 // Obtener el detalle de una receta en particular
@@ -110,14 +90,25 @@ server.post("/recipes/create", async (req, res) => {
 // Incluir los tipos de dieta asociados
 server.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
-  // const {title,image} = req.body
 
   try {
-    const getrecipeid = await users.findByPk(id);
+    const getrecipeid = await Recipe.findByPk(id);
 
     res.status(200).json(getrecipeid);
   } catch (error) {
     res.status(400).json({ msg: "no recipe by id found" });
+  }
+});
+
+server.get("/recipes", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const getallrecipes = await Recipe.findAll();
+
+    res.status(200).json(getallrecipes);
+  } catch (error) {
+    res.status(400).json({ msg: "no recipes found" });
   }
 });
 

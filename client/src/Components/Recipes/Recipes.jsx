@@ -18,7 +18,7 @@ export default function Recipes() {
 
   return (
     <div>
-      {recipes.map((e, index) => {
+      {recipes?.map((e, index) => {
         return (
           <Recipe
             key={index}
@@ -27,6 +27,7 @@ export default function Recipes() {
             image={e.image}
             diets={e.diets}
             healthScore={e.healthScore}
+            summary={e.summary}
           />
         );
       })}
