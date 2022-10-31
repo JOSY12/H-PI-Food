@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import "./Recipes.css";
 import { getrecipes } from "../../actions";
@@ -11,13 +9,12 @@ export default function Recipes() {
 
   useEffect(() => {
     dispatch(getrecipes());
-    console.log("montado");
-  }, []);
+  }, [dispatch]);
   const recipes = useSelector((state) => state.recipes);
 
   return (
-    <div>
-      {recipes.map((e, index) => {
+    <div className="recipegeneral">
+      {recipes?.map((e, index) => {
         return (
           <Recipe
             key={index}
@@ -25,6 +22,7 @@ export default function Recipes() {
             title={e.title}
             image={e.image}
             diets={e.diets}
+            dishTypes={e.dishTypes}
             healthScore={e.healthScore}
             summary={e.summary}
           />

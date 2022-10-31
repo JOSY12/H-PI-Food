@@ -1,0 +1,7 @@
+.recipegeneral {
+  background-color: #efefef;
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: center;
+}

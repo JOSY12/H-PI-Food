@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 export default function Nav() {
   return (
-    <div>
-      <nav>
-        <ul>
+    <div className="navcontainer">
+      <nav className="nav">
+        <ul className="navul">
           <Link to={"/recipes"}>
-            <li>home</li>
+            <li className="navli">Home</li>
           </Link>
 
           <Link to={"/create"}>
-            <li>create</li>
+            <li className="navli">Create</li>
           </Link>
 
           <Link to={"/diets"}>
-            <li>Diets</li>
+            <li className="navli">Diets</li>
           </Link>
         </ul>
       </nav>

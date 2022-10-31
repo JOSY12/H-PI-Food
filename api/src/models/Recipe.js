@@ -29,6 +29,11 @@ module.exports = (sequelize) => {
 
         allowNull: true,
       },
+      dishTypes: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+
+        allowNull: true,
+      },
       healthScore: {
         type: DataTypes.INTEGER,
         allowNull: true,

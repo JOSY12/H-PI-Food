@@ -1,3 +1,17 @@
-.cointainer {
+.recipecreator {
+  background-color: #efefef;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.recipecreator .inputsform {
+  display: flex;
+  flex-direction: column;
+}
+.recipecreator .inputs {
+  margin: 2px;
+}
+.recipecreator .formlabel {
+  color: black;
 }

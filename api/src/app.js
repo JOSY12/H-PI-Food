@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const recipes = require("./routes/recipes");
-const create = require("./routes/create");
+
 // const { Recipe, Op } = require("./db");
 // const { where } = require("sequelize");
 
@@ -29,7 +29,7 @@ server.use((req, res, next) => {
 });
 
 server.use("/", recipes);
-server.use("/", create);
+
 // //////////////////////////
 // Error catching endware.
 // server.use((err, req, res, next) => {

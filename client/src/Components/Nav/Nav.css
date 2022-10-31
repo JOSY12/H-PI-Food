@@ -1,0 +1,18 @@
+.navcontainer {
+  text-decoration: none;
+}
+.navcontainer .nav {
+  background-color: #d2001a;
+}
+.navcontainer .nav .navul {
+  margin: 0px;
+  justify-content: center;
+  display: flex;
+}
+.navcontainer .nav .navul .navli {
+  justify-content: center;
+  flex-direction: row;
+  margin: 10px;
+  color: #efefef;
+  font-size: 30px;
+}

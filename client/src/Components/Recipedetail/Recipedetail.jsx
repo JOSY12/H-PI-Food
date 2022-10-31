@@ -10,28 +10,28 @@ export default function Recipedetail() {
 
   useEffect(() => {
     dispatch(getrecipe(id));
-  }, []);
+  }, [dispatch]);
   const { title, image, dishTypes, healthScore, diets, summary } = useSelector(
     (state) => state.recipe
   );
-
+  console.log(summary);
   return (
-    <div>
-      <ul>
-        <li>{title}</li>
+    <div className="detailcontainer">
+      <ul className="detailul">
+        <li className="detailli">{title}</li>
 
-        <li>
-          <img src={image} alt="recipeimage"></img>
+        <li className="detailli">
+          <img className="detailimage" src={image} alt="recipeimage"></img>
         </li>
-        <li>dishType: {dishTypes}</li>
-        <li>healthScore: {healthScore}</li>
+        <li className="detailli">dishType: {dishTypes}</li>
+        <li className="detailli">healthScore: {healthScore}</li>
 
-        <li>
+        <li className="detailli">
           diets types:
           {diets}
         </li>
 
-        <li>summary: {summary}</li>
+        <li className="detailli">summary: {summary}</li>
       </ul>
     </div>
   );

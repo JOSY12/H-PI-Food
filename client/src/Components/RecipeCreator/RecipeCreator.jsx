@@ -11,6 +11,7 @@ export default function RecipeCreator() {
     summary: "",
     image: "",
     diets: [],
+    dishTypes: [],
     healthScore: 0,
   });
 
@@ -18,9 +19,6 @@ export default function RecipeCreator() {
     e.preventDefault();
     if (!inputs.healthScore || !inputs.title) {
       alert("complete the recipe title,healthScore");
-    } else if (!inputs.image) {
-      inputs.image =
-        "http://www.destenaire.com/noaccess/wp-content/uploads/2014/10/8-Oddest-Food-Items-Featured-Image1.png";
     } else {
       dispatch(
         createrecipe(
@@ -28,17 +26,26 @@ export default function RecipeCreator() {
           inputs.summary,
           inputs.image,
           inputs.diets,
-          inputs.healthScore
+          inputs.healthScore,
+          inputs.dishTypes
         )
       );
+      console.log(inputs);
       alert("recipe created");
     }
   }
 
-  function adddiet(e) {
+  function diets(e) {
     inputs.diets.push(e.target.value);
   }
+  function dishTypes(e) {
+    inputs.dishTypes.push(e.target.value);
+  }
   function saverecipe(e) {
+    if (!inputs.image) {
+      inputs.image =
+        "http://www.destenaire.com/noaccess/wp-content/uploads/2014/10/8-Oddest-Food-Items-Featured-Image1.png";
+    }
     const property = e.target.name;
     const value = e.target.value;
 
@@ -46,9 +53,9 @@ export default function RecipeCreator() {
   }
   console.log(inputs);
   return (
-    <div>
-      <form onSubmit={sendrecipe}>
-        <label>title</label>
+    <div className="recipecreator">
+      <form className="inputsform" onSubmit={sendrecipe}>
+        <label className="formlabel">title</label>
         <br></br>
         <input
           type={"text"}
@@ -57,9 +64,8 @@ export default function RecipeCreator() {
           name="title"
         ></input>
         <br></br>
-        <label>recipe url image</label>
+        <label className="formlabel">recipe url image</label>
         <small> leave blank if dont have url</small>
-
         <input
           type={"text"}
           value={inputs.image}
@@ -67,7 +73,7 @@ export default function RecipeCreator() {
           name="image"
         ></input>
         <br></br>
-        <label>Recipe details, summary</label>
+        <label className="formlabel">Recipe details, summary</label>
         <br></br>
         <textarea
           value={inputs.summary}
@@ -77,8 +83,7 @@ export default function RecipeCreator() {
           cols="50"
         ></textarea>
         <br></br>
-        <label>health score level</label>
-
+        <label className="formlabel">health score level</label>
         <input
           type={"number"}
           value={inputs.healthScore}
@@ -87,16 +92,27 @@ export default function RecipeCreator() {
         ></input>
 
         <br></br>
-        <label>diet type: </label>
-
-        <select multiple onChange={adddiet} value={inputs.diets} name="diets">
+        <label className="formlabel">diet type: </label>
+        <select multiple onChange={diets} value={inputs.diets} name="diets">
           <option value="vegetarian">vegetarian</option>
           <option value="vegan">vegan</option>
           <option value="dairy free">dairy free</option>
           <option value="lacto ovo vegetarian">lacto ovo vegetarian</option>
         </select>
+        <label className="formlabel">dish Type: </label>
+        <select
+          multiple
+          onChange={dishTypes}
+          value={inputs.dishTypes}
+          name="dishTypes"
+        >
+          <option value="lunch">lunch</option>
+          <option value="main course">main course</option>
+          <option value="main dish">main dish</option>
+          <option value="dinner">dinner</option>
+        </select>
         <br></br>
-        <label>steps</label>
+        <label className="formlabel">steps</label>
         <br></br>
         {/* <textarea
         value={inputs.steps}
@@ -105,7 +121,6 @@ export default function RecipeCreator() {
         rows="10"
         cols="50"
       ></textarea> */}
-
         <button type="submit">Create Recipe</button>
       </form>
     </div>

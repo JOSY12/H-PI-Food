@@ -15,7 +15,8 @@ export default function App() {
       <Route exact path={"/"}>
         <Home />
       </Route>
-      <Route path={"/recipes"}>
+
+      <Route path={["/recipes", "/create", "/diets"]}>
         <Nav />
       </Route>
       <Route exact path={"/recipes"}>

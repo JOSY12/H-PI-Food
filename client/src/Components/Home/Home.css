@@ -1,0 +1,18 @@
+.homecontainer {
+  padding: 27%;
+  justify-content: center;
+  text-decoration: none;
+  list-style: none;
+  text-align: center;
+  background-color: wheat;
+  background-image: url("https://media.istockphoto.com/vectors/food-and-cooking-seamless-pattern-doodles-vector-id1220584431?k=20&m=1220584431&s=612x612&w=0&h=zG6GegMieyvBFvwO3uYlhJE5eAZGAeb08AAu0AfiW6Y=");
+  background-repeat: repeat;
+}
+.homecontainer .link {
+  font-size: 50px;
+  height: fit-content;
+  width: fit-content;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+}
