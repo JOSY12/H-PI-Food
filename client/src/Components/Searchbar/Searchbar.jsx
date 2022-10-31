@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./Searchbar.css";
 // import { filterecipe } from "../../actions";
 
 export default function Searchbar() {

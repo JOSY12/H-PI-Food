@@ -1,3 +1,4 @@
+// import axios from "axios";
 import {
   GET_RECIPE,
   GET_RECIPES,
@@ -9,10 +10,19 @@ import {
 const initialstate = {
   recipes: [],
   diets: [],
-  recipe: [],
+  recipe: {},
   filter: "",
 };
+// const getrecipes = () => {
+//   return async function (dispatch) {
+//     const responselocal = await axios.get(`http://localhost:3001/recipes`);
 
+//     for (let i of responselocal.data) {
+//       initialstate.recipes.push(i);
+//     }
+//   };
+// };
+// getrecipes();
 const reducer = (state = initialstate, action) => {
   switch (action.type) {
     case GET_RECIPES:

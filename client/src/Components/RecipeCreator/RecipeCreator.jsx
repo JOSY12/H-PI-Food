@@ -1,27 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import "./RecipeCreator.css";
 import { createrecipe } from "../../actions";
 
 export default function RecipeCreator() {
+  const dispatch = useDispatch();
   const [inputs, setinputs] = useState({
     title: "",
     summary: "",
     image: "",
-    diets: "",
+    diets: [],
     healthScore: 0,
   });
-  const dispatch = useDispatch();
-  const sendrecipe = (e) => {
-    e.preventDefault();
 
-    if (!inputs.image) {
+  function sendrecipe(e) {
+    e.preventDefault();
+    if (!inputs.healthScore || !inputs.title) {
+      alert("complete the recipe title,healthScore");
+    } else if (!inputs.image) {
       inputs.image =
         "http://www.destenaire.com/noaccess/wp-content/uploads/2014/10/8-Oddest-Food-Items-Featured-Image1.png";
-    } else if (!inputs.title) {
-      alert("titulo de receta necesario");
-    } else if (!inputs.healthScore) {
-      alert("es necesario el campo comida saludable healthcore ");
     } else {
       dispatch(
         createrecipe(
@@ -32,18 +31,20 @@ export default function RecipeCreator() {
           inputs.healthScore
         )
       );
-      console.log(inputs);
+      alert("recipe created");
     }
-  };
+  }
 
-  const saverecipe = (e) => {
+  function adddiet(e) {
+    inputs.diets.push(e.target.value);
+  }
+  function saverecipe(e) {
     const property = e.target.name;
     const value = e.target.value;
 
     setinputs({ ...inputs, [property]: value });
-  };
+  }
   console.log(inputs);
-
   return (
     <div>
       <form onSubmit={sendrecipe}>
@@ -88,7 +89,7 @@ export default function RecipeCreator() {
         <br></br>
         <label>diet type: </label>
 
-        <select onChange={saverecipe} value={inputs.diets} name="diets">
+        <select multiple onChange={adddiet} value={inputs.diets} name="diets">
           <option value="vegetarian">vegetarian</option>
           <option value="vegan">vegan</option>
           <option value="dairy free">dairy free</option>
@@ -97,13 +98,13 @@ export default function RecipeCreator() {
         <br></br>
         <label>steps</label>
         <br></br>
-        <textarea
-          value={inputs.steps}
-          onChange={saverecipe}
-          name="steps"
-          rows="10"
-          cols="50"
-        ></textarea>
+        {/* <textarea
+        value={inputs.steps}
+        onChange={saverecipe}
+        name="steps"
+        rows="10"
+        cols="50"
+      ></textarea> */}
 
         <button type="submit">Create Recipe</button>
       </form>
