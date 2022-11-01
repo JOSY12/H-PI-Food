@@ -2,36 +2,59 @@
   background-color: #efefef;
 
   display: flex;
-  padding: 5% 0 20% 0;
-
+  flex-flow: column;
+  flex-direction: row;
+  padding: 0% 0 25% 0;
   justify-content: center;
-  text-decoration: none;
-  list-style: none;
-
   background-color: wheat;
   background-image: url("https://st2.depositphotos.com/3740491/8238/v/450/depositphotos_82386710-stock-illustration-outline-seamless-pattern-with-hand.jpg");
   background-repeat: repeat;
 
+  .ulgeneral {
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+  }
+
   .detailul {
     display: flex;
-    margin: 10px;
+    flex-flow: column;
+    flex-direction: row;
+
     padding: 0px;
 
-    flex-flow: column;
-    background-color: #d2001a;
     border-radius: 20px;
 
     justify-content: center;
-    align-content: center;
-    align-items: center;
 
     .detailimage {
-      padding: 0px;
-      margin: 0px;
+      border: 2px solid #efefef;
       border-radius: 20px;
+      width: fit-content;
+      height: fit-content;
     }
+
     .detailli {
       color: #efefef;
+      display: flex;
+      flex-flow: column;
+      flex-direction: row;
+    }
+  }
+
+  .datainfo {
+    padding: 0px;
+    display: flex;
+
+    flex-direction: column;
+
+    background-color: #d2001a;
+    border: 5px solid #efefef;
+    border-radius: 20px;
+    .detailli {
+      color: #efefef;
+      word-break: break-all;
+      display: inline;
     }
   }
 }

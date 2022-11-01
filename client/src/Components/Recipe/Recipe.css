@@ -1,29 +1,59 @@
 .recipecontainer {
-  background-color: #d2001a;
+  background-color: #cf3030;
   display: flex;
-  justify-content: center;
-  border: 2px solid #efefef;
-  border-radius: 10px;
-  padding: 1%;
-}
-.recipecontainer .recipeul {
-  margin: 0px;
-  display: flex;
-  justify-content: center;
   flex-direction: column;
-  padding: 0px;
+  flex-flow: column;
+  margin: 10px;
+  width: 100%;
   height: fit-content;
-  width: 100%;
-  color: #efefef;
+  word-break: break-all;
 }
-.recipecontainer .recipeul .recipeli {
+.recipecontainer .imageul {
+  padding: 0px;
   margin: 0px;
-  color: #efefef;
-  font-size: 25px;
+  display: inline;
 }
-.recipecontainer .recipeul .recipeimage {
-  height: 250px;
-  width: 100%;
-  border-radius: 2px;
-  border: 2px solid yellow;
+.recipecontainer .imageul .imagerecipe {
+  margin: 0px;
+  padding: 0px;
+  height: 200px;
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+}
+.recipecontainer .imageul .imagerecipeli {
+  border-radius: 20px;
+  color: #efefef;
+  display: flex;
+  flex-flow: column;
+  flex-direction: row;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+.recipecontainer .recipeulgeneral {
+  display: flex;
+  flex-flow: row;
+  box-shadow: #26394d 0px 20px 30px -10px;
+  margin: 0px;
+  padding: 0px;
+}
+.recipecontainer .recipeulgeneral .recipeimage {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+.recipecontainer .recipeulgeneral .recipedataul {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  border-radius: 20px;
+}
+.recipecontainer .recipeulgeneral .recipedataul .recipedatali {
+  margin: 10px 0px 10px 0px;
+  color: #efefef;
+  display: inline;
+  font-size: 20px;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import "./Recipes.css";
 import { getrecipes } from "../../actions";
@@ -6,11 +7,11 @@ import Recipe from "../Recipe/Recipe";
 
 export default function Recipes() {
   const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes);
 
   useEffect(() => {
     dispatch(getrecipes());
   }, [dispatch]);
-  const recipes = useSelector((state) => state.recipes);
 
   return (
     <div className="recipegeneral">

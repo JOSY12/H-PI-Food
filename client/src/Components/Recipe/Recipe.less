@@ -1,35 +1,65 @@
 .recipecontainer {
-  background-color: #d2001a;
-
+  background-color: #cf3030;
   display: flex;
+  flex-direction: column;
+  flex-flow: column;
 
-  justify-content: center;
-  border: 2px solid #efefef;
-  border-radius: 10px;
+  margin: 10px;
 
-  padding: 1%;
-  .recipeul {
-    margin: 0px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
+  width: 100%;
+  height: fit-content;
+  word-break: break-all;
+  .imageul {
     padding: 0px;
-    height: fit-content;
-    width: 100%;
-    color: #efefef;
+    margin: 0px;
+    display: inline;
 
-    .recipeli {
+    .imagerecipe {
       margin: 0px;
-      color: #efefef;
-      font-size: 25px;
-    }
+      padding: 0px;
+      height: 200px;
 
+      display: flex;
+      flex-flow: column;
+      flex-direction: column;
+    }
+    .imagerecipeli {
+      border-radius: 20px;
+      color: #efefef;
+      display: flex;
+      flex-flow: column;
+      flex-direction: row;
+      padding: 0px;
+      margin: 0px;
+      height: 100%;
+    }
+  }
+  .recipeulgeneral {
+    display: flex;
+    flex-flow: row;
+
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    margin: 0px;
+    padding: 0px;
     .recipeimage {
-      height: 250px;
-      width: 100%;
-      border-radius: 2px;
-      border: 2px solid yellow;
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
+    }
+    .recipedataul {
+      padding: 0px;
+      margin: 0px;
+      display: flex;
+      flex-flow: column;
+      flex-direction: column;
+      border-radius: 20px;
+
+      .recipedatali {
+        margin: 10px 0px 10px 0px;
+        color: #efefef;
+        display: inline;
+        font-size: 20px;
+      }
     }
   }
 }

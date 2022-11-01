@@ -10,25 +10,25 @@ const API_KEY1 = `07b53d9ba28e42c7980df758189b49de`;
 recipes.get("/recipes", async (req, res) => {
   try {
     const localrecipes = await Recipe.findAll();
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=10`
-    );
-    const datarecipes = response.data.results.map((recipe) => {
-      const objectrecipe = {
-        id: recipe.id,
-        title: recipe.title,
-        summary: recipe.summary,
-        image: recipe.image,
-        diets: recipe.diets,
-        dishTypes: recipe.dishTypes,
-        healthScore: recipe.healthScore,
-      };
-      return objectrecipe;
-    });
-    
-    const datacombine = [...datarecipes, ...localrecipes];
+    // const response = await axios.get(
+    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=10`
+    // );
+    // const datarecipes = response.data.results.map((recipe) => {
+    //   const objectrecipe = {
+    //     id: recipe.id,
+    //     title: recipe.title,
+    //     summary: recipe.summary,
+    //     image: recipe.image,
+    //     diets: recipe.diets,
+    //     dishTypes: recipe.dishTypes,
+    //     healthScore: recipe.healthScore,
+    //   };
+    //   return objectrecipe;
+    // });
 
-    res.status(200).json(datacombine);
+    // const datacombine = [...datarecipes, ...localrecipes];
+
+    res.status(200).json(localrecipes);
   } catch (error) {
     res.status(400).json({ msg: "no recipes found" });
   }
@@ -58,10 +58,9 @@ recipes.get("/recipes/?title=:title", async (req, res) => {
 });
 
 recipes.post("/recipes", async (req, res) => {
-  const { id, title, summary, image, diets, healthScore, dishTypes } = req.body;
+  const { title, summary, image, diets, healthScore, dishTypes } = req.body;
   try {
     const newrecipe = await Recipe.create({
-      id: id,
       title: title,
       summary: summary,
       image: image,

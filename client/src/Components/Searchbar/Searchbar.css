@@ -1,0 +1,9 @@
+.divsearchgenearl {
+  background-color: #d2001a;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.divsearchgenearl .itemfilter {
+  margin: 10px;
+}

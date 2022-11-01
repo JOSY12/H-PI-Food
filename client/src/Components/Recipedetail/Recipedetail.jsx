@@ -10,28 +10,40 @@ export default function Recipedetail() {
 
   useEffect(() => {
     dispatch(getrecipe(id));
-  }, [dispatch]);
+  }, []);
   const { title, image, dishTypes, healthScore, diets, summary } = useSelector(
     (state) => state.recipe
   );
-  console.log(summary);
+  console.log(diets);
   return (
     <div className="detailcontainer">
-      <ul className="detailul">
-        <li className="detailli">{title}</li>
+      <ul className="ulgeneral">
+        <ul className="detailul">
+          <li>
+            <img className="detailimage" src={image} alt="recipeimage"></img>
+          </li>
+        </ul>
+        <ul className="datainfo">
+          <li className="detailli">
+            {" "}
+            <h1> {title}</h1>
+          </li>
+          <li className="detailli">
+            <h1 className="detailli">dishTypes :</h1>
+            {dishTypes.map((e) => {
+              return <li className="detailli"> {e}</li>;
+            })}
+          </li>
+          <li className="detailli">healthScore: {healthScore}</li>
+          <li className="detailli">
+            <h1 className="detailli">diets types: </h1>
 
-        <li className="detailli">
-          <img className="detailimage" src={image} alt="recipeimage"></img>
-        </li>
-        <li className="detailli">dishType: {dishTypes}</li>
-        <li className="detailli">healthScore: {healthScore}</li>
-
-        <li className="detailli">
-          diets types:
-          {diets}
-        </li>
-
-        <li className="detailli">summary: {summary}</li>
+            {diets.map((e) => {
+              return <li className="detailli"> {e}</li>;
+            })}
+          </li>
+          <li className="detailli">summary: {summary}</li>
+        </ul>
       </ul>
     </div>
   );
@@ -42,3 +54,6 @@ export default function Recipedetail() {
 // [ x] Resumen del plato
 // [x ] Nivel de "comida saludable" (health score)
 // [x ] Paso a paso
+// diets.map((e) => {
+//   return <li className="detailli"> {e}</li>;
+// })

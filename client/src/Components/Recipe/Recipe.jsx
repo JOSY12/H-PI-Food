@@ -3,39 +3,47 @@ import "./Recipe.css";
 export default function Recipe({ id, title, image, diets, dishTypes }) {
   return (
     <div className="recipecontainer">
-      <ul className="recipeul">
-        <li className="recipeli">
-          <Link className="recipeli" to={`/recipes/${id}`}>
-            {title}
-          </Link>
-        </li>
-        <li>
-          <Link to={`/recipes/${id}`}>
-            <img className="recipeimage" src={image} alt="recipeimage"></img>
-          </Link>
-        </li>
+      <Link to={`/recipes/${id}`}>
+        <ul className="recipeulgeneral">
+          <ul className="imageul">
+            <li className="imagerecipeli">
+              <img className="imagerecipe" src={image} alt="recipeimage"></img>
+            </li>
+          </ul>
+          <ul className="recipedataul">
+            <ul className="recipedatali"> {title}</ul>
+            <ul className="recipedatali">
+              dish type:
+              {dishTypes.map((e, index) => {
+                return (
+                  <li key={index} className="recipedatali">
+                    🍲{e}
+                  </li>
+                );
+              })}
+            </ul>
 
-        <ul className="recipeul">
-          diets:
-          {diets.map((e, index) => {
-            return (
-              <li className="recipeli" key={index}>
-                ✓{e}
-              </li>
-            );
-          })}
+            <ul className="recipedatali">
+              diets type:
+              {diets.map((e, index) => {
+                return (
+                  <li key={index} className="recipedatali">
+                    🥗{e}
+                  </li>
+                );
+              })}
+            </ul>
+          </ul>
         </ul>
-        <ul className="recipeul">
-          dishTypes:
-          {dishTypes.map((e, index) => {
-            return (
-              <li className="recipeli" key={index}>
-                ✓{e}
-              </li>
-            );
-          })}
-        </ul>
-      </ul>
+      </Link>
     </div>
   );
 }
+
+//   diets.map((e, index) => {
+//     return (
+//       <li key={index} className="recipedatali">
+//         🥗{e}
+//       </li>
+//     );
+//   });
