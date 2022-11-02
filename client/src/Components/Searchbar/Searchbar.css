@@ -3,6 +3,7 @@
   color: white;
   display: flex;
   justify-content: center;
+  border: 1px solid black;
 }
 .divsearchgenearl .itemfilter {
   margin: 10px;

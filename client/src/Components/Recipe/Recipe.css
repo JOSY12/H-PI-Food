@@ -23,7 +23,7 @@
 }
 .recipecontainer .imageul .imagerecipeli {
   border-radius: 20px;
-  color: #efefef;
+  color: black;
   display: flex;
   flex-flow: column;
   flex-direction: row;
@@ -55,5 +55,5 @@
   margin: 10px 0px 10px 0px;
   color: #efefef;
   display: inline;
-  font-size: 20px;
+  font-size: 25px;
 }

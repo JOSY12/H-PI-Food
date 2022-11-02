@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import "./RecipeCreator.css";
 import { createrecipe } from "../../actions";
 
 export default function RecipeCreator() {
   const dispatch = useDispatch();
+
   const [inputs, setinputs] = useState({
     title: "",
     summary: "",
@@ -15,10 +17,23 @@ export default function RecipeCreator() {
     healthScore: 0,
   });
 
+  function diets(e) {
+    if (!inputs.diets.includes(e.target.value)) {
+      inputs.diets.push(e.target.value);
+    } else {
+      return <p> error diet added already</p>;
+    }
+  }
+  function dishTypes(e) {
+    if (!inputs.dishTypes.includes(e.target.value)) {
+      inputs.dishTypes.push(e.target.value);
+    }
+  }
   function sendrecipe(e) {
     e.preventDefault();
-    if (!inputs.healthScore || !inputs.title) {
-      alert("complete the recipe title,healthScore");
+
+    if (!inputs.summary || !inputs.title) {
+      alert("complete the recipe title,summary");
     } else {
       dispatch(
         createrecipe(
@@ -30,17 +45,12 @@ export default function RecipeCreator() {
           inputs.dishTypes
         )
       );
+
       console.log(inputs);
       alert("recipe created");
     }
   }
-  function diets(e) {
-    inputs.diets.push(e.target.value);
-  }
 
-  function dishTypes(e) {
-    inputs.dishTypes.push(e.target.value);
-  }
   function saverecipe(e) {
     if (!inputs.image) {
       inputs.image =
@@ -56,7 +66,7 @@ export default function RecipeCreator() {
     <div className="recipecreator">
       <form className="inputsform" onSubmit={sendrecipe}>
         <label className="formlabel">title</label>
-        <br></br>
+
         <input
           className="inputs"
           type={"text"}
@@ -64,9 +74,11 @@ export default function RecipeCreator() {
           onChange={saverecipe}
           name="title"
         ></input>
-        <br></br>
-        <label className="formlabel">recipe url image</label>
-        <small> leave blank if dont have url</small>
+
+        <label className="formlabel">
+          recipe url image <small> leave blank if dont have url</small>
+        </label>
+
         <input
           className="inputs"
           type={"text"}
@@ -74,10 +86,11 @@ export default function RecipeCreator() {
           onChange={saverecipe}
           name="image"
         ></input>
-        <br></br>
+
         <label className="formlabel">Recipe details, summary</label>
-        <br></br>
+
         <textarea
+          className="inputs"
           value={inputs.summary}
           placeholder="recipe summary"
           onChange={saverecipe}
@@ -85,7 +98,7 @@ export default function RecipeCreator() {
           rows="10"
           cols="50"
         ></textarea>
-        <br></br>
+
         <label className="formlabel">health score level</label>
         <input
           className="inputs"
@@ -95,9 +108,15 @@ export default function RecipeCreator() {
           onChange={saverecipe}
         ></input>
 
-        <br></br>
         <label className="formlabel">diet type: </label>
-        <select multiple onChange={diets} value={inputs.diets} name="diets">
+        <select
+          onClick={diets}
+          className="inputs"
+          multiple
+          onChange={diets}
+          value={inputs.diets}
+          name="diets"
+        >
           <option value="vegetarian">vegetarian</option>
           <option value="vegan">vegan</option>
           <option value="dairy free">dairy free</option>
@@ -111,8 +130,11 @@ export default function RecipeCreator() {
           <option value="Primal">Primal</option>
           <option value="Whole30">Whole30</option>
         </select>
+
         <label className="formlabel">dish Type: </label>
+
         <select
+          className="inputs"
           multiple
           onChange={dishTypes}
           value={inputs.dishTypes}
@@ -123,9 +145,9 @@ export default function RecipeCreator() {
           <option value="main dish ">main dish</option>
           <option value="dinner ">dinner</option>
         </select>
-        <br></br>
+
         {/* <label className="formlabel">steps</label> */}
-        <br></br>
+
         {/* <textarea
         value={inputs.steps}
         onChange={saverecipe}

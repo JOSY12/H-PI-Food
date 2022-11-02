@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import "./Recipes.css";
@@ -10,8 +11,13 @@ export default function Recipes() {
   const recipes = useSelector((state) => state.recipes);
 
   useEffect(() => {
-    dispatch(getrecipes());
-  }, [dispatch]);
+    if (!recipes?.length) {
+      dispatch(getrecipes());
+      console.log("loaded once ");
+    } else {
+      console.log("data Loaded Already");
+    }
+  }, [recipes]);
 
   return (
     <div className="recipegeneral">

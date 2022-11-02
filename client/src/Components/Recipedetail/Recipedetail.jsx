@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,42 +8,47 @@ import "./Recipedetail.css";
 export default function Recipedetail() {
   var { id } = useParams();
   const dispatch = useDispatch();
-
+  console.log(id);
+  const recipe = useSelector((state) => state.recipe);
   useEffect(() => {
     dispatch(getrecipe(id));
   }, []);
-  const { title, image, dishTypes, healthScore, diets, summary } = useSelector(
-    (state) => state.recipe
-  );
-  console.log(diets);
+
+  console.log(recipe);
+
   return (
     <div className="detailcontainer">
       <ul className="ulgeneral">
         <ul className="detailul">
           <li>
-            <img className="detailimage" src={image} alt="recipeimage"></img>
+            <img
+              className="detailimage"
+              src={recipe.image}
+              alt="recipeimage"
+            ></img>
           </li>
         </ul>
         <ul className="datainfo">
           <li className="detailli">
-            {" "}
-            <h1> {title}</h1>
+            <h1 className="detailli"> {recipe.title}</h1>
           </li>
           <li className="detailli">
-            <h1 className="detailli">dishTypes :</h1>
-            {dishTypes.map((e) => {
-              return <li className="detailli"> {e}</li>;
-            })}
+            <h1 className="detailli">dishTypes: </h1>
+            {recipe.dishTypes}
           </li>
-          <li className="detailli">healthScore: {healthScore}</li>
+          <li className="detailli">
+            <h1 className="detailli">healthScore: </h1>
+            {recipe.healthScore}
+          </li>
+
           <li className="detailli">
             <h1 className="detailli">diets types: </h1>
-
-            {diets.map((e) => {
-              return <li className="detailli"> {e}</li>;
-            })}
+            {recipe.diets}
           </li>
-          <li className="detailli">summary: {summary}</li>
+
+          <li className="detailli">
+            <h1 className="detailli">summary: </h1> {recipe.summary}
+          </li>
         </ul>
       </ul>
     </div>
@@ -56,4 +62,4 @@ export default function Recipedetail() {
 // [x ] Paso a paso
 // diets.map((e) => {
 //   return <li className="detailli"> {e}</li>;
-// })
+// });

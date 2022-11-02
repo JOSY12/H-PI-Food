@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 const { Router } = require("express");
 const { Recipe } = require("../db");
 const axios = require("axios");
-const e = require("express");
 
 const recipes = Router();
 const API_KEY = `ad9da6e060534e168458e3bc391b1d68`;
@@ -9,12 +9,35 @@ const API_KEY1 = `07b53d9ba28e42c7980df758189b49de`;
 
 recipes.get("/recipes", async (req, res) => {
   try {
-    const localrecipes = await Recipe.findAll();
+    // const response = await axios.get(
+    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=5`
+    // );
+    // const resultado = response.data.results.map((recipe) => {
+    //   Recipe.findOrCreate({
+    //     where: {
+    //       title: recipe.title,
+    //       summary: recipe.summary,
+    //       image: recipe.image,
+    //       diets: recipe.diets,
+    //       dishTypes: recipe.dishTypes,
+    //       healthScore: recipe.healthScore,
+    //     },
+    //     defaults: {
+    //       title: recipe.title,
+    //       summary: recipe.summary,
+    //       image: recipe.image,
+    //       diets: recipe.diets,
+    //       dishTypes: recipe.dishTypes,
+    //       healthScore: recipe.healthScore,
+    //     },
+    //   });
+    // });
+    /////////option2 ideal
     // const response = await axios.get(
     //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=10`
     // );
     // const datarecipes = response.data.results.map((recipe) => {
-    //   const objectrecipe = {
+    //  return   {
     //     id: recipe.id,
     //     title: recipe.title,
     //     summary: recipe.summary,
@@ -23,14 +46,15 @@ recipes.get("/recipes", async (req, res) => {
     //     dishTypes: recipe.dishTypes,
     //     healthScore: recipe.healthScore,
     //   };
-    //   return objectrecipe;
+    //
     // });
 
-    // const datacombine = [...datarecipes, ...localrecipes];
-
+    // await Recipe.bulkCreate(datarecipes);
+    const localrecipes = await Recipe.findAll();
     res.status(200).json(localrecipes);
+    //new Set y un findOrCreate
   } catch (error) {
-    res.status(400).json({ msg: "no recipes found" });
+    res.status(400).json({ msg: "no recipes found  " });
   }
 });
 
@@ -38,9 +62,9 @@ recipes.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const getrecipeid = await Recipe.findByPk(id);
+    const recipe = await Recipe.findByPk(id);
 
-    res.status(200).json(getrecipeid);
+    res.status(200).json(recipe);
   } catch (error) {
     res.status(400).json({ msg: "no recipe by id found" });
   }
