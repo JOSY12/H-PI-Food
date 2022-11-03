@@ -6,6 +6,7 @@ export const GET_DIETS = "GET_DIETS";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const FILTER_RECIPE = "FILTER_RECIPE";
 export const FILTER_TYPE = "FILTER_TYPE";
+export const HEALTHSCORE_FILTER = "HEALTHSCORE_FILTER";
 
 export const FILTER_AZ_ZA = "FILTER_AZ_ZA";
 export const getrecipes = () => {
@@ -32,6 +33,7 @@ export const getrecipe = (id) => {
 };
 
 export const createrecipe = (
+  steps,
   title,
   summary,
   image,
@@ -46,6 +48,7 @@ export const createrecipe = (
     diets: diets,
     healthScore: healthScore,
     dishTypes: dishTypes,
+    steps: steps,
   };
   return async function (dispatch) {
     const response = await axios.post(
@@ -71,10 +74,18 @@ export const getrecipetype = (type) => {
   };
 };
 
-export const filterasc_des = (type) => {
+export const filterasc_des = (order) => {
   return async function (dispatch) {
-    console.log(type + " type");
+    console.log(order + " order");
 
-    dispatch({ type: FILTER_AZ_ZA, payload: type });
+    dispatch({ type: FILTER_AZ_ZA, payload: order });
+  };
+};
+
+export const getrecipeHealthScore = (health) => {
+  return async function (dispatch) {
+    console.log(health + " order");
+
+    dispatch({ type: HEALTHSCORE_FILTER, payload: health });
   };
 };

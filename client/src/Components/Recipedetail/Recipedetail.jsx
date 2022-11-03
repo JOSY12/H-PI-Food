@@ -31,23 +31,36 @@ export default function Recipedetail() {
         <ul className="datainfo">
           <li className="detailli">
             <h1 className="detailli"> {recipe.title}</h1>
+            <hr></hr>
           </li>
+
           <li className="detailli">
-            <h1 className="detailli">dishTypes: </h1>
+            <h1 className="detailli">Dish Types:</h1>
             {recipe.dishTypes}
           </li>
           <li className="detailli">
-            <h1 className="detailli">healthScore: </h1>
+            <h1 className="detailli">HealthScore: </h1>
             {recipe.healthScore}
           </li>
 
           <li className="detailli">
-            <h1 className="detailli">diets types: </h1>
+            <h1 className="detailli">Diets types: </h1>
             {recipe.diets}
           </li>
 
           <li className="detailli">
-            <h1 className="detailli">summary: </h1> {recipe.summary}
+            <h1 className="detailli">
+              Summary: <hr></hr>
+            </h1>
+            {recipe.summary}
+          </li>
+
+          <br></br>
+          <li className="detailli">
+            <h1 className="detailli">
+              Steps: <hr></hr>
+            </h1>
+            {recipe.steps}
           </li>
         </ul>
       </ul>

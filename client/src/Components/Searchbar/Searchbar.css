@@ -3,8 +3,14 @@
   color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   border: 1px solid black;
 }
+.divsearchgenearl .selects {
+  margin: 10px 10px 10px 10px;
+  width: 200px;
+}
 .divsearchgenearl .itemfilter {
-  margin: 10px;
+  font-size: 25px;
+  margin: 10px 0px 10px 10px;
 }

@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import "./Recipe.css";
-export default function Recipe({ id, title, image, diets, dishTypes }) {
+export default function Recipe({
+  id,
+  title,
+  image,
+  diets,
+  dishTypes,
+  healthScore,
+}) {
   return (
     <div className="recipecontainer">
       <Link to={`/recipes/${id}`}>
@@ -12,6 +19,8 @@ export default function Recipe({ id, title, image, diets, dishTypes }) {
           </ul>
           <ul className="recipedataul">
             <ul className="recipedatali"> {title}</ul>
+
+            <ul className="recipedatali">healthScore: {healthScore}</ul>
             <ul className="recipedatali">
               dish type:
               {dishTypes.map((e, index) => {

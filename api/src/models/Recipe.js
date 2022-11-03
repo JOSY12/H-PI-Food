@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      steps: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
       image: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -33,6 +37,7 @@ module.exports = (sequelize) => {
 
         allowNull: true,
       },
+
       dishTypes: {
         type: DataTypes.ARRAY(DataTypes.STRING),
 
@@ -49,12 +54,12 @@ module.exports = (sequelize) => {
 
 // El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterisco deben ser obligatorias):
 
-// [ ] Receta con las siguientes propiedades:
+// [ x] Receta con las siguientes propiedades:
 // ID: *
 // Nombre *
 // Resumen del plato *
 // Nivel de "comida saludable" (health score)
 // Paso a paso
-// [ ] Tipo de dieta con las siguientes propiedades:
+// [ x] Tipo de dieta con las siguientes propiedades:
 // ID
 // Nombre
