@@ -5,6 +5,7 @@ import {
   getrecipetype,
   filterasc_des,
   getrecipeHealthScore,
+  getrecipes,
 } from "../../actions";
 import { useDispatch } from "react-redux";
 
@@ -23,7 +24,8 @@ export default function Searchbar() {
     dispatch(getrecipetype(inputs.type));
   }
 
-  function HealthScorefilter() {
+  function HealthScorefilter(e) {
+    setinputs({ ...inputs, HealthScore: e.target.value });
     dispatch(getrecipeHealthScore(inputs.HealthScore));
   }
 
@@ -34,6 +36,7 @@ export default function Searchbar() {
   function sendwords(e) {
     setinputs({ ...inputs, searched: e.target.value });
     dispatch(getrecipefilter(inputs.searched));
+    dispatch(getrecipes());
   }
   function savefilter(e) {
     e.preventDefault();
@@ -42,10 +45,9 @@ export default function Searchbar() {
 
     setinputs({ ...inputs, [property]: value });
   }
-  console.log(inputs);
+
   return (
     <div className="divsearchgenearl">
-      <hr></hr>
       <label className="itemfilter">Order:</label>
       <select
         className="selects"
@@ -87,6 +89,7 @@ export default function Searchbar() {
         type="range"
         min="0"
         max="100"
+        value={inputs.value}
       ></input>
 
       <input

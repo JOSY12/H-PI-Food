@@ -3,7 +3,9 @@
   display: flex;
   flex-direction: column;
   flex-flow: column;
+  background-image: url("https://us.123rf.com/450wm/prettyvectors/prettyvectors1608/prettyvectors160800022/60532577-food-background-pattern-vector-flat-cartoon-illustration.jpg?ver=6");
   margin: 10px;
+  border: 2px solid #cf3030;
   width: 100%;
   height: fit-content;
   word-break: break-all;
@@ -53,7 +55,7 @@
 }
 .recipecontainer .recipeulgeneral .recipedataul .recipedatali {
   margin: 10px 0px 5px 0px;
-  color: #efefef;
+  color: black;
   display: inline;
   font-size: 25px;
 }

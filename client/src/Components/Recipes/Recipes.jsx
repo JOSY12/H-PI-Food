@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-// , useState
+
 import "./Recipes.css";
 
 import { useSelector } from "react-redux";
@@ -11,26 +11,12 @@ export default function Recipes() {
   const recipes = useSelector((state) => state.recipes);
   const searched = useSelector((state) => state.searched);
   const type = useSelector((state) => state.type);
-  // const healthScore = useSelector((state) => state.healthScore);
+  const healthScore = useSelector((state) => state.healthScore);
   const order = useSelector((state) => state.order);
-  useEffect(() => {
-    console.log("loeaded data");
-  }, [order]);
-  // const [type, setype] = useState();
-  // const [typed, setyped] = useState();
 
-  // function handler(e) {
-  //   setype(e.target.value);
-  // }
-  // function handlertyped(e) {
-  //   setyped(e.target.value);
-  // }
-
-  // const itemsinpage = 9;
+  // const [itemsinpage, setitemsinpage] = useState(10);
   // const [items, setitems] = useState([...recipes].splice(0, itemsinpage));
-
   // const [actualpage, setcurrentpage] = useState(0);
-
   // function nextpage() {
   //   const totalitems = recipes.length;
 
@@ -43,25 +29,27 @@ export default function Recipes() {
   //   setitems([...recipes].splice(index, itemsinpage));
   //   setcurrentpage(nextpage);
   // }
-
   // function prevpage() {
   //   const prevpage = actualpage - 1;
-
-  //   if (prevpage <= 0) return;
   //   const index = prevpage * itemsinpage;
-
+  //   if (prevpage < 0) return;
   //   setitems([...recipes].splice(index, itemsinpage));
   //   setcurrentpage(prevpage);
   // }
+
+  useEffect(() => {}, [order, searched, healthScore]);
   const filtered =
     !type || type === "all"
-      ? recipes.filter((e) =>
-          e.title.toLowerCase().includes(searched.toLowerCase())
+      ? recipes.filter(
+          (e) =>
+            e.title.toLowerCase().includes(searched.toLowerCase()) &&
+            e.healthScore >= healthScore
         )
       : recipes.filter(
           (e) =>
             e.diets.includes(type.toLowerCase()) &&
-            e.title.toLowerCase().includes(searched.toLowerCase())
+            e.title.toLowerCase().includes(searched.toLowerCase()) &&
+            e.healthScore >= healthScore
         );
 
   return (
@@ -69,7 +57,7 @@ export default function Recipes() {
       {/* <button onClick={prevpage}>prev</button>
       <button onClick={nextpage}>next</button> */}
 
-      {filtered.map((e, index) => {
+      {filtered?.map((e, index) => {
         return (
           <Recipe
             key={index}
@@ -90,11 +78,4 @@ export default function Recipes() {
 
 // Ruta principal: debe contener
 
-// [ x] Input de búsqueda para encontrar recetas por nombre
-// [x ] Área donde se verá el listado de recetas. Deberá mostrar su:
-// Imagen
-// Nombre
-// Tipo de dieta (vegetariano, vegano, apto celíaco, etc)
-// [ x] Botones/Opciones para filtrar por por tipo de dieta
-// [ x] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las recetas por orden alfabético y por health score (nivel de comida saludable).
 // [x ] Paginado para ir buscando y mostrando las siguientes recetas, 9 recetas por pagina, mostrando las primeros 9 en la primer pagina.

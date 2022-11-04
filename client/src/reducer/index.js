@@ -59,13 +59,9 @@ const reducer = (state = initialstate, action) => {
       return { ...state, recipes: recypesByOrder, order: action.payload };
 
     case HEALTHSCORE_FILTER:
-      const recipesdata = state.recipes;
       const HealthScore = action.payload;
-      const healthScorefilter = HealthScore
-        ? recipesdata.filter((e) => e.healthScore === HealthScore)
-        : recipesdata;
 
-      return { ...state, healthScore: healthScorefilter };
+      return { ...state, healthScore: HealthScore };
 
     default:
       return { ...state };

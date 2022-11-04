@@ -1,16 +1,11 @@
-.divsearchgenearl {
-  background-color: #d2001a;
-  color: white;
+.divdiet {
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  background-image: url("https://img.freepik.com/vector-premium/patron-fisuras-verduras-grafico-lineal-fondo-verduras-patron-alimentos-saludables-ilustracion-vectorial_74669-186.jpg?w=2000");
+  background-size: contain;
 }
-.divsearchgenearl .selects {
-  margin: 10px 10px 10px 10px;
-  width: 200px;
-}
-.divsearchgenearl .itemfilter {
-  font-size: 25px;
-  margin: 10px 0px 10px 10px;
+.divdiet .info {
+  box-shadow: #555bff 0px 0px 0px 3px, #1fc11b 0px 0px 0px 6px, #ffd913 0px 0px 0px 9px, #ff9c55 0px 0px 0px 12px, #ff5555 0px 0px 0px 15px;
 }

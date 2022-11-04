@@ -52,8 +52,6 @@ module.exports = (sequelize) => {
   );
 };
 
-// El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterisco deben ser obligatorias):
-
 // [ x] Receta con las siguientes propiedades:
 // ID: *
 // Nombre *

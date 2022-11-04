@@ -9,8 +9,9 @@ const API_KEY1 = `07b53d9ba28e42c7980df758189b49de`;
 
 recipes.get("/recipes", async (req, res) => {
   try {
+    //option1
     // const response = await axios.get(
-    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
     // );
     // const resultado = response.data.results.map((recipe) => {
     //   Recipe.findOrCreate({
@@ -34,6 +35,7 @@ recipes.get("/recipes", async (req, res) => {
     //     },
     //   });
     // });
+    //option2
     ///?no funciona ya":"??"
     // const datarecipes = response?.data.results.map((recipe) => {
     //   const objet = {
@@ -49,6 +51,8 @@ recipes.get("/recipes", async (req, res) => {
     // });
 
     // await Recipe.bulkCreate(datarecipes);
+    //option3
+    // const combined = [...datarecipes, ...localrecipes];
 
     const localrecipes = await Recipe.findAll();
     res.status(200).json(localrecipes);
@@ -69,7 +73,7 @@ recipes.get("/recipes/:id", async (req, res) => {
   }
 });
 
-recipes.get("/recipes/?title=:title", async (req, res) => {
+recipes.get("/recipes/?q=:title", async (req, res) => {
   const { title } = req.params;
   try {
     const getrecipe = await Recipe.findAll({ where: { title: title } });
