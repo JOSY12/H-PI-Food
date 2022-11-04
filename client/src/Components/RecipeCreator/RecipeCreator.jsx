@@ -31,8 +31,12 @@ export default function RecipeCreator() {
   function sendrecipe(e) {
     e.preventDefault();
 
-    if (!inputs.summary || !inputs.title) {
-      alert("complete the recipe title,summary");
+    if (!inputs.summary || !inputs.title || !inputs.healthScore) {
+      alert("complete the recipe title, summary, healthScore");
+    } else if (inputs.title.includes(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) {
+      alert("title canot include numbers");
+    } else if (inputs.summary.length > 500) {
+      alert("summary canot include more than 5 characters");
     } else {
       dispatch(
         createrecipe(
@@ -47,7 +51,7 @@ export default function RecipeCreator() {
       );
 
       console.log(inputs);
-      alert("recipe created");
+      alert("recipe created succesfully");
     }
   }
 
@@ -56,12 +60,13 @@ export default function RecipeCreator() {
       inputs.image =
         "http://www.destenaire.com/noaccess/wp-content/uploads/2014/10/8-Oddest-Food-Items-Featured-Image1.png";
     }
+
     const property = e.target.name;
     const value = e.target.value;
 
     setinputs({ ...inputs, [property]: value });
   }
-  console.log(inputs);
+
   return (
     <div className="recipecreator">
       <form className="inputsform" onSubmit={sendrecipe}>
@@ -74,7 +79,7 @@ export default function RecipeCreator() {
           name="title"
         ></input>
         <label className="formlabel">
-          recipe url image <small> leave blank if dont have url</small>
+          image url <small>Optional</small>
         </label>
         <input
           className="inputs"
@@ -101,7 +106,7 @@ export default function RecipeCreator() {
           onChange={saverecipe}
           name="healthScore"
           value={inputs.healthScore}
-          className="inputs"
+          className="heal"
           type="range"
           min="0"
           max="100"

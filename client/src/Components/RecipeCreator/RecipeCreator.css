@@ -1,7 +1,7 @@
 .recipecreator {
   padding: 0 0 15% 0;
   background-color: #efefef;
-  background-image: url("https://st.depositphotos.com/2158511/4377/v/450/depositphotos_43771103-stock-illustration-raw-food-seamless-background.jpg");
+  background-image: url("https://media.istockphoto.com/vectors/fast-food-seamless-pattern-with-vector-line-icons-of-hamburger-pizza-vector-id1182393436?k=20&m=1182393436&s=612x612&w=0&h=dBfdRS9u4_maG_64tWyZNNSNZBg6aWcuDEw95Xno8oI=");
   background-repeat: repeat;
   background-size: auto;
   display: flex;
@@ -20,4 +20,8 @@
   color: black;
   width: fit-content;
   background-color: white;
+}
+.recipecreator .heal {
+  background-color: red;
+  color: white;
 }

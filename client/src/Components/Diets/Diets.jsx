@@ -1,8 +1,70 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Recipe from "../Recipe/Recipe";
+import { getrecipes } from "../../actions";
 
-import "./Nav.css";
+import "./Diets.css";
 export default function Diets() {
-  return <div></div>;
+  const items = useSelector((state) => state.recipes);
+  const [type, setype] = useState();
+  const [typed, setyped] = useState();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getrecipes());
+  }, []);
+
+  function handler(e) {
+    setype(e.target.value);
+  }
+  function handlertyped(e) {
+    setyped(e.target.value);
+  }
+  const filtered =
+    !type || type === "all"
+      ? items
+      : items.filter(
+          (e) =>
+            e.diets.includes(type.toLocaleLowerCase()) &&
+            e.title.toLocaleLowerCase().includes(typed.toLocaleLowerCase())
+        );
+
+  return (
+    <div>
+      <label className="itemfilter">Diet types:</label>
+      <select onChange={handler} className="selects" name="type">
+        <option value="all">all</option>
+
+        <option value="vegan">vegan</option>
+        <option value="dairy free">dairy free</option>
+        <option value="Gluten Free">Gluten Free</option>
+        <option value="Ketogenic">Ketogenic</option>
+        <option value="Lacto ovo Vegetarian">Lacto Vegetarian</option>
+        <option value="pescatarian">Pescetarian</option>
+        <option value="paleolithic">Paleo</option>
+        <option value="fodmap friendly">Low FODMAP</option>
+        <option value="Primal">Primal</option>
+        <option value="Whole 30">Whole30</option>
+      </select>
+      <input onChange={handlertyped}></input>
+      diets: {filtered.length}
+      {filtered.map((e, index) => {
+        return (
+          <Recipe
+            key={index}
+            id={e.id}
+            title={e.title}
+            image={e.image}
+            diets={e.diets}
+            dishTypes={e.dishTypes}
+            healthScore={e.healthScore}
+            summary={e.summary}
+            steps={e.steps}
+          />
+        );
+      })}
+    </div>
+  );
 }
 
 // Gluten Free

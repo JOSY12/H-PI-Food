@@ -1,34 +1,75 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
+// , useState
 import "./Recipes.css";
-import { getrecipes } from "../../actions";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 import Recipe from "../Recipe/Recipe";
 
 export default function Recipes() {
-  const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
-  const order = useSelector((state) => state.order);
   const searched = useSelector((state) => state.searched);
   const type = useSelector((state) => state.type);
-  const HealthScore = useSelector((state) => state.HealthScore);
-
-  function dataloader() {
-    if (!recipes.length) {
-      dispatch(getrecipes());
-      console.log("loaded once ");
-    } else {
-      console.log("data Loaded Already");
-    }
-  }
+  // const healthScore = useSelector((state) => state.healthScore);
+  const order = useSelector((state) => state.order);
   useEffect(() => {
-    dataloader();
-  }, [recipes, order, searched, type, HealthScore]);
+    console.log("loeaded data");
+  }, [order]);
+  // const [type, setype] = useState();
+  // const [typed, setyped] = useState();
+
+  // function handler(e) {
+  //   setype(e.target.value);
+  // }
+  // function handlertyped(e) {
+  //   setyped(e.target.value);
+  // }
+
+  // const itemsinpage = 9;
+  // const [items, setitems] = useState([...recipes].splice(0, itemsinpage));
+
+  // const [actualpage, setcurrentpage] = useState(0);
+
+  // function nextpage() {
+  //   const totalitems = recipes.length;
+
+  //   const nextpage = actualpage + 1;
+
+  //   const index = nextpage * itemsinpage;
+
+  //   if (index >= totalitems) return;
+
+  //   setitems([...recipes].splice(index, itemsinpage));
+  //   setcurrentpage(nextpage);
+  // }
+
+  // function prevpage() {
+  //   const prevpage = actualpage - 1;
+
+  //   if (prevpage <= 0) return;
+  //   const index = prevpage * itemsinpage;
+
+  //   setitems([...recipes].splice(index, itemsinpage));
+  //   setcurrentpage(prevpage);
+  // }
+  const filtered =
+    !type || type === "all"
+      ? recipes.filter((e) =>
+          e.title.toLowerCase().includes(searched.toLowerCase())
+        )
+      : recipes.filter(
+          (e) =>
+            e.diets.includes(type.toLowerCase()) &&
+            e.title.toLowerCase().includes(searched.toLowerCase())
+        );
 
   return (
     <div className="recipegeneral">
-      {recipes.map((e, index) => {
+      {/* <button onClick={prevpage}>prev</button>
+      <button onClick={nextpage}>next</button> */}
+
+      {filtered.map((e, index) => {
         return (
           <Recipe
             key={index}

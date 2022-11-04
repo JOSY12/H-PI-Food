@@ -3,7 +3,7 @@
 import {
   GET_RECIPE,
   GET_RECIPES,
-  GET_DIETS,
+  // GET_DIETS,
   CREATE_RECIPE,
   FILTER_RECIPE,
   FILTER_TYPE,
@@ -16,7 +16,7 @@ const initialstate = {
   searched: "",
   order: "",
   type: "",
-  HealthScore: 0,
+  healthScore: 0,
   recipe: {},
 };
 
@@ -28,38 +28,20 @@ const reducer = (state = initialstate, action) => {
     case GET_RECIPE:
       return { ...state, recipe: action.payload };
 
-    case GET_DIETS:
-      return { ...state, diets: action.payload };
+    // case GET_DIETS:
+    //   return { ...state, diets: action.payload };
 
     case CREATE_RECIPE:
       return { ...state, recipes: [...state.recipes, action.payload] };
     case FILTER_RECIPE:
-      const data = state.recipes;
       const filter = action.payload;
-      const filtetitle = !filter
-        ? data
-        : data.filter((e) =>
-            e.title
-              .toLocaleLowerCase()
 
-              .includes(filter.toLocaleLowerCase())
-          );
-
-      return { ...state, recipes: filtetitle, searched: filter };
+      return { ...state, searched: filter };
 
     case FILTER_TYPE:
-      const alldata = state.recipes;
       const selectedtype = action.payload;
-      const type =
-        selectedtype === "all" && state.searched
-          ? alldata.filter((e) => e.title.includes(state.searched))
-          : alldata.filter(
-              (e) =>
-                e.title.includes(state.searched.toLocaleLowerCase()) &&
-                e.diets.includes(selectedtype.toLocaleLowerCase())
-            );
 
-      return { ...state, recipes: type, type: selectedtype };
+      return { ...state, type: selectedtype };
 
     case FILTER_AZ_ZA:
       const recypesByOrder =
@@ -83,7 +65,7 @@ const reducer = (state = initialstate, action) => {
         ? recipesdata.filter((e) => e.healthScore === HealthScore)
         : recipesdata;
 
-      return { ...state, HealthScore: healthScorefilter };
+      return { ...state, healthScore: healthScorefilter };
 
     default:
       return { ...state };

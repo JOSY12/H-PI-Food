@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./Searchbar.css";
 import {
-  filterasc_des,
   getrecipefilter,
   getrecipetype,
+  filterasc_des,
   getrecipeHealthScore,
 } from "../../actions";
 import { useDispatch } from "react-redux";
@@ -18,23 +18,25 @@ export default function Searchbar() {
 
   const dispatch = useDispatch();
 
-  function setypefilter() {
-    if (inputs.type) return dispatch(getrecipetype(inputs.type));
+  function type(e) {
+    setinputs({ ...inputs, type: e.target.value });
+    dispatch(getrecipetype(inputs.type));
   }
 
-  function seHealthScorefilter() {
-    if (inputs.HealthScore)
-      return dispatch(getrecipeHealthScore(inputs.HealthScore));
+  function HealthScorefilter() {
+    dispatch(getrecipeHealthScore(inputs.HealthScore));
   }
 
-  function order() {
-    if (inputs.order) return dispatch(filterasc_des(inputs.order));
+  function order(e) {
+    setinputs({ ...inputs, order: e.target.value });
+    dispatch(filterasc_des(inputs.order));
   }
-
-  function sendwords() {
-    if (inputs.searched) return dispatch(getrecipefilter(inputs.searched));
+  function sendwords(e) {
+    setinputs({ ...inputs, searched: e.target.value });
+    dispatch(getrecipefilter(inputs.searched));
   }
   function savefilter(e) {
+    e.preventDefault();
     const property = e.target.name;
     const value = e.target.value;
 
@@ -43,6 +45,7 @@ export default function Searchbar() {
   console.log(inputs);
   return (
     <div className="divsearchgenearl">
+      <hr></hr>
       <label className="itemfilter">Order:</label>
       <select
         className="selects"
@@ -51,7 +54,7 @@ export default function Searchbar() {
         onClick={order}
         onChange={savefilter}
       >
-        <option value="ASC">ASD</option>
+        <option value="ASC">ASC</option>
         <option value="DES">DES</option>
       </select>
       <label className="itemfilter">Diet types:</label>
@@ -59,8 +62,8 @@ export default function Searchbar() {
         className="selects"
         value={inputs.type}
         name="type"
-        onClick={setypefilter}
-        onChange={savefilter}
+        onChange={type}
+        onClick={type}
       >
         <option value="all">all</option>
 
@@ -76,20 +79,11 @@ export default function Searchbar() {
         <option value="Whole 30">Whole30</option>
       </select>
       <label className="itemfilter">HealthScore</label>
-      {/* <input
-        name="HealthScore"
-        value={inputs.HealthScore}
-        className="itemfilter"
-        placeholder="HealthScore"
-        onChange={savefilter}
-        type="number"
-      ></input> */}
+
       <input
-        onChange={seHealthScorefilter}
+        onChange={HealthScorefilter}
         name="HealthScore"
-        value={inputs.HealthScore}
         className="itemfilter"
-        placeholder="HealthScore"
         type="range"
         min="0"
         max="100"
@@ -100,12 +94,12 @@ export default function Searchbar() {
         value={inputs.searched}
         className="itemfilter"
         placeholder="Recipe..."
-        onChange={savefilter}
+        onChange={sendwords}
         type="text"
       ></input>
-      <button className="itemfilter" onClick={sendwords}>
+      {/* <button className="itemfilter" onClick={sendwords}>
         Search
-      </button>
+      </button> */}
     </div>
   );
 }
