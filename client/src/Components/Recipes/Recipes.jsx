@@ -1,6 +1,7 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-use-before-define */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import "./Recipes.css";
 
@@ -13,7 +14,10 @@ export default function Recipes() {
   const type = useSelector((state) => state.type);
   const healthScore = useSelector((state) => state.healthScore);
   const order = useSelector((state) => state.order);
+  const [h, seth] = useState(healthScore);
 
+  if (h < 50) seth(100);
+  if (h > 50) seth(50);
   // const [itemsinpage, setitemsinpage] = useState(10);
   // const [items, setitems] = useState([...recipes].splice(0, itemsinpage));
   // const [actualpage, setcurrentpage] = useState(0);
@@ -32,31 +36,30 @@ export default function Recipes() {
   // function prevpage() {
   //   const prevpage = actualpage - 1;
   //   const index = prevpage * itemsinpage;
-  //   if (prevpage < 0) return;
+  //   if (prevpage <= 0) return;
   //   setitems([...recipes].splice(index, itemsinpage));
   //   setcurrentpage(prevpage);
   // }
 
-  useEffect(() => {}, [order, searched, healthScore]);
+  useEffect(() => {}, [recipes, order, searched, healthScore]);
   const filtered =
     !type || type === "all"
       ? recipes.filter(
           (e) =>
-            e.title.toLowerCase().includes(searched.toLowerCase()) &&
-            e.healthScore >= healthScore
+            e.title.toLowerCase().includes(searched.toLowerCase()) ||
+            e.diets.includes(type.toLowerCase())
         )
       : recipes.filter(
           (e) =>
             e.diets.includes(type.toLowerCase()) &&
-            e.title.toLowerCase().includes(searched.toLowerCase()) &&
-            e.healthScore >= healthScore
+            e.title.toLowerCase().includes(searched.toLowerCase())
         );
 
   return (
     <div className="recipegeneral">
       {/* <button onClick={prevpage}>prev</button>
       <button onClick={nextpage}>next</button> */}
-
+      {<li>{filtered.length}</li>}
       {filtered?.map((e, index) => {
         return (
           <Recipe

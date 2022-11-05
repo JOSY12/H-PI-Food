@@ -20,9 +20,14 @@ export default function Diets() {
         "No ingredients may contain meat or meat by-products, such as bones or gelatin.",
     },
     {
-      diet: "Lacto-Vegetarian",
+      diet: "Lacto Vegetarian",
       Description:
         "All ingredients must be vegetarian and none of the ingredients can be or contain egg.",
+    },
+    {
+      diet: "Ovo Vegetarian",
+      Description:
+        "All ingredients must be vegetarian and none of the ingredients can be or contain dairy",
     },
     {
       diet: "Vegan",
@@ -49,11 +54,16 @@ export default function Diets() {
       Description:
         "FODMAP stands for (fermentable oligo-, di-, mono-saccharides and polyols) . Our ontology knows which foods are considered high in these types of carbohydrates (e.g. legumes, wheat, and dairy products)",
     },
+    {
+      diet: "Whole 30",
+      Description:
+        "Allowed ingredients include meat, fish/seafood, eggs, vegetables, fresh fruit, coconut oil, olive oil, small amounts of dried fruit and nuts/seeds. Ingredients not allowed include added sweeteners (natural and artificial, except small amounts of fruit juice), dairy (except clarified butter or ghee), alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), and food additives, such as carrageenan, MSG, and sulfites",
+    },
   ];
 
   return (
     <div className="divdiet">
-      <ul>
+      <ol>
         {diets.map((e, i) => {
           return (
             <li key={i} className="info">
@@ -62,7 +72,7 @@ export default function Diets() {
             </li>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
 }

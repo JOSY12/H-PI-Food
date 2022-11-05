@@ -40,7 +40,16 @@ export default function Recipedetail() {
           </li>
           <li className="detailli">
             <h1 className="detailli">HealthScore: </h1>
-            {recipe.healthScore}
+            {recipe.healthScore}% healthy(
+            <meter
+              max="100"
+              min="0"
+              low="33"
+              high="60"
+              optimum="80"
+              value={recipe.healthScore}
+            ></meter>
+            )
           </li>
 
           <li className="detailli">

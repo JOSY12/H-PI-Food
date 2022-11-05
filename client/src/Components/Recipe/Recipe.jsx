@@ -20,7 +20,18 @@ export default function Recipe({
           <ul className="recipedataul">
             <ul className="recipedatali"> {title}</ul>
 
-            <ul className="recipedatali">healthScore: {healthScore}</ul>
+            <ul className="recipedatali">
+              healthScore: {healthScore}% healthy (
+              <meter
+                max="100"
+                min="0"
+                low="33"
+                high="60"
+                optimum="80"
+                value={healthScore}
+              ></meter>
+              )
+            </ul>
             <ul className="recipedatali">
               dish type:
               {dishTypes.map((e, index) => {

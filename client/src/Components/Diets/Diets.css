@@ -3,9 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("https://img.freepik.com/vector-premium/patron-fisuras-verduras-grafico-lineal-fondo-verduras-patron-alimentos-saludables-ilustracion-vectorial_74669-186.jpg?w=2000");
+  background-color: #fffad7;
   background-size: contain;
-}
-.divdiet .info {
-  box-shadow: #555bff 0px 0px 0px 3px, #1fc11b 0px 0px 0px 6px, #ffd913 0px 0px 0px 9px, #ff9c55 0px 0px 0px 12px, #ff5555 0px 0px 0px 15px;
 }

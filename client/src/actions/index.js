@@ -52,13 +52,6 @@ export const createrecipe = (
   };
 };
 
-export const getquery = (query) => {
-  return async function (dispatch) {
-    const data = await axios.get(`http://localhost:3001/recipes/?q=${query}`);
-
-    dispatch({ type: GET_RECIPES, payload: data.data });
-  };
-};
 export const getrecipefilter = (searched) => {
   return async function (dispatch) {
     dispatch({ type: FILTER_RECIPE, payload: searched });

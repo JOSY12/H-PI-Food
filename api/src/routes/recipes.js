@@ -8,10 +8,11 @@ const API_KEY = `ad9da6e060534e168458e3bc391b1d68`;
 const API_KEY1 = `07b53d9ba28e42c7980df758189b49de`;
 
 recipes.get("/recipes", async (req, res) => {
+  const { title } = req.query;
   try {
     //option1
     // const response = await axios.get(
-    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
+    //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
     // );
     // const resultado = response.data.results.map((recipe) => {
     //   Recipe.findOrCreate({
@@ -35,6 +36,7 @@ recipes.get("/recipes", async (req, res) => {
     //     },
     //   });
     // });
+
     //option2
     ///?no funciona ya":"??"
     // const datarecipes = response?.data.results.map((recipe) => {
@@ -55,9 +57,17 @@ recipes.get("/recipes", async (req, res) => {
     // const combined = [...datarecipes, ...localrecipes];
 
     const localrecipes = await Recipe.findAll();
-    res.status(200).json(localrecipes);
+    if (title) {
+      const filterd = localrecipes.filter((e) =>
+        e.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
+      );
+      res.status(200).json(filterd);
+    }
+    if (!title) {
+      res.status(200).json(localrecipes);
+    }
   } catch (error) {
-    res.status(400).json({ msg: "no recipes found  " });
+    res.status(400).json({ msg: "no recipes or query found " });
   }
 });
 
@@ -70,17 +80,6 @@ recipes.get("/recipes/:id", async (req, res) => {
     res.status(200).json(recipe);
   } catch (error) {
     res.status(400).json({ msg: "no recipe by id found" });
-  }
-});
-
-recipes.get("/recipes/?q=:title", async (req, res) => {
-  const { title } = req.params;
-  try {
-    const getrecipe = await Recipe.findAll({ where: { title: title } });
-
-    res.status(200).json(getrecipe);
-  } catch (error) {
-    res.status(400).json({ msg: "no recipe found" });
   }
 });
 
@@ -102,4 +101,5 @@ recipes.post("/recipes", async (req, res) => {
     res.status(400).json({ msg: "no recipe created" });
   }
 });
+
 module.exports = recipes;

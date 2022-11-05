@@ -5,7 +5,6 @@ import {
   getrecipetype,
   filterasc_des,
   getrecipeHealthScore,
-  getrecipes,
 } from "../../actions";
 import { useDispatch } from "react-redux";
 
@@ -34,9 +33,7 @@ export default function Searchbar() {
     dispatch(filterasc_des(inputs.order));
   }
   function sendwords(e) {
-    setinputs({ ...inputs, searched: e.target.value });
     dispatch(getrecipefilter(inputs.searched));
-    dispatch(getrecipes());
   }
   function savefilter(e) {
     e.preventDefault();
@@ -76,6 +73,7 @@ export default function Searchbar() {
         <option value="Lacto ovo Vegetarian">Lacto Vegetarian</option>
         <option value="pescatarian">Pescetarian</option>
         <option value="paleolithic">Paleo</option>
+        <option value="Ovo Vegetarian">Ovo Vegetarian</option>
         <option value="fodmap friendly">Low FODMAP</option>
         <option value="Primal">Primal</option>
         <option value="Whole 30">Whole30</option>
@@ -91,18 +89,18 @@ export default function Searchbar() {
         max="100"
         value={inputs.value}
       ></input>
-
+      <li className="itemfilter"> {inputs.HealthScore}</li>
       <input
         name="searched"
         value={inputs.searched}
         className="itemfilter"
         placeholder="Recipe..."
-        onChange={sendwords}
+        onChange={savefilter}
         type="text"
       ></input>
-      {/* <button className="itemfilter" onClick={sendwords}>
+      <button className="itemfilter" onClick={sendwords}>
         Search
-      </button> */}
+      </button>
     </div>
   );
 }

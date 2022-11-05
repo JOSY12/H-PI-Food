@@ -11,7 +11,7 @@ export default function Nav() {
           </Link>
 
           <Link to={"/create"}>
-            <li className="navli">Create</li>
+            <li className="navli">Create Recipe</li>
           </Link>
 
           <Link to={"/diets"}>

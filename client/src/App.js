@@ -38,6 +38,7 @@ export default function App() {
       <Route exact path={"/recipes"}>
         <Recipes />
       </Route>
+
       <Route exact path={"/diets"}>
         <Diets />
       </Route>
