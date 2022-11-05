@@ -69,7 +69,16 @@ export default function Recipedetail() {
             <h1 className="detailli">
               Steps: <hr></hr>
             </h1>
-            {recipe.steps}
+            <ul className="detailli">
+              {recipe.steps?.map((e, i) => {
+                return (
+                  <li key={e}>
+                    step{i + 1}
+                    <hr></hr>:{e}
+                  </li>
+                );
+              })}
+            </ul>
           </li>
         </ul>
       </ul>

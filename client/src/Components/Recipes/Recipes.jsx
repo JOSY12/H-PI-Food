@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-use-before-define */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import "./Recipes.css";
 
@@ -14,10 +14,7 @@ export default function Recipes() {
   const type = useSelector((state) => state.type);
   const healthScore = useSelector((state) => state.healthScore);
   const order = useSelector((state) => state.order);
-  const [h, seth] = useState(healthScore);
 
-  if (h < 50) seth(100);
-  if (h > 50) seth(50);
   // const [itemsinpage, setitemsinpage] = useState(10);
   // const [items, setitems] = useState([...recipes].splice(0, itemsinpage));
   // const [actualpage, setcurrentpage] = useState(0);

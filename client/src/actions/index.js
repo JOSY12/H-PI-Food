@@ -2,12 +2,12 @@
 import axios from "axios";
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_RECIPE = "GET_RECIPE";
-
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const FILTER_RECIPE = "FILTER_RECIPE";
 export const FILTER_TYPE = "FILTER_TYPE";
 export const HEALTHSCORE_FILTER = "HEALTHSCORE_FILTER";
 export const FILTER_AZ_ZA = "FILTER_AZ_ZA";
+export const FILTER_HEALTHCORE = "FILTER_HEALTHCORE";
 
 export const getrecipes = () => {
   return async function (dispatch) {
@@ -73,5 +73,11 @@ export const filterasc_des = (order) => {
 export const getrecipeHealthScore = (health) => {
   return async function (dispatch) {
     dispatch({ type: HEALTHSCORE_FILTER, payload: health });
+  };
+};
+
+export const horder = (health) => {
+  return async function (dispatch) {
+    dispatch({ type: FILTER_HEALTHCORE, payload: health });
   };
 };

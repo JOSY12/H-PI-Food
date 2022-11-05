@@ -18,21 +18,26 @@ recipes.get("/recipes", async (req, res) => {
     //   Recipe.findOrCreate({
     //     where: {
     //       title: recipe.title,
-    //       summary: recipe.summary,
+    //       summary: recipe.summary.replace(/<[^>]*>?/gm, ""),
     //       image: recipe.image,
     //       diets: recipe.diets,
-    //       dishTypes: recipe.dishTypes,
+    //       dishTypes: recipe.dishTypes.join(", "),
     //       healthScore: recipe.healthScore,
-    //       steps: recipe.analyzedInstructions.steps,
+    //     steps: e.analyzedInstructions[0]
+    //     ? e.analyzedInstructions[0].steps.map((e, i) => `${i + 1}: ${e.step}`)
+    //     : ["No existen instrucciones"],
     //     },
+    //     // steps:(r.analyzedInstructions && r.analyzedInstructions.steps?r.analyzedInstructions.steps.map(item=>item.step).join("|"):'')
     //     defaults: {
     //       title: recipe.title,
-    //       summary: recipe.summary,
+    //       summary: recipe.summary.replace(/<[^>]*>?/gm, ""),
     //       image: recipe.image,
     //       diets: recipe.diets,
-    //       dishTypes: recipe.dishTypes,
+    //       dishTypes: recipe.dishTypes.join(", "),
     //       healthScore: recipe.healthScore,
-    //       steps: recipe.analyzedInstructions.steps,
+    //       steps: e.analyzedInstructions[0]
+    // ? e.analyzedInstructions[0].steps.map((e, i) => `${i + 1}: ${e.step}`)
+    // : ["No existen instrucciones"],
     //     },
     //   });
     // });

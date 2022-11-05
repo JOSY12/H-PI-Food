@@ -3,12 +3,11 @@
 import {
   GET_RECIPE,
   GET_RECIPES,
-  // GET_DIETS,
   CREATE_RECIPE,
   FILTER_RECIPE,
   FILTER_TYPE,
   FILTER_AZ_ZA,
-  HEALTHSCORE_FILTER,
+  FILTER_HEALTHCORE,
 } from "../actions";
 
 const initialstate = {
@@ -16,7 +15,7 @@ const initialstate = {
   searched: "",
   order: "",
   type: "",
-  healthScore: 0,
+
   recipe: {},
 };
 
@@ -27,9 +26,6 @@ const reducer = (state = initialstate, action) => {
 
     case GET_RECIPE:
       return { ...state, recipe: action.payload };
-
-    // case GET_DIETS:
-    //   return { ...state, diets: action.payload };
 
     case CREATE_RECIPE:
       return { ...state, recipes: [...state.recipes, action.payload] };
@@ -57,11 +53,18 @@ const reducer = (state = initialstate, action) => {
               else return -1;
             });
       return { ...state, recipes: recypesByOrder, order: action.payload };
-
-    case HEALTHSCORE_FILTER:
-      const HealthScore = action.payload;
-
-      return { ...state, healthScore: HealthScore };
+    case FILTER_HEALTHCORE:
+      const recypesByHealthScore =
+        action.payload === "Low To Hight"
+          ? state.recipes.sort((a, b) => {
+              if (a.healthScore > b.healthScore) return 1;
+              else return -1;
+            })
+          : state.recipes.sort((a, b) => {
+              if (a.healthScore < b.healthScore) return 1;
+              else return -1;
+            });
+      return { ...state, recipes: recypesByHealthScore, order: action.payload };
 
     default:
       return { ...state };

@@ -16,7 +16,8 @@ export default function RecipeCreator() {
     diets: [],
     dishTypes: [],
     healthScore: 0,
-    steps: "",
+    steps: [],
+    listSteps: "",
   });
 
   function diets(e) {
@@ -55,7 +56,15 @@ export default function RecipeCreator() {
       alert("recipe created succesfully");
     }
   }
-
+  const handleSteps = (e) => {
+    if (inputs.listSteps.length) {
+      setinputs({
+        ...inputs,
+        steps: [...inputs.steps, inputs.listSteps],
+        listSteps: "",
+      });
+    }
+  };
   function saverecipe(e) {
     if (!inputs.image) {
       inputs.image =
@@ -168,7 +177,7 @@ export default function RecipeCreator() {
           <option value="dinner">dinner</option>
         </select>
         <label className="formlabel">steps</label>
-        <textarea
+        {/* <textarea
           value={inputs.steps}
           onChange={saverecipe}
           name="steps"
@@ -177,7 +186,23 @@ export default function RecipeCreator() {
           type="text"
           className="inputs"
           placeholder="recipe steps"
-        ></textarea>
+        ></textarea> */}
+        <input
+          type="text"
+          className="input-create"
+          onChange={saverecipe}
+          value={inputs.listSteps}
+          name="listSteps"
+        />
+        <button className="btn-create" onClick={handleSteps} type="button">
+          Add
+        </button>
+        <div className="list-steps">
+          {inputs.steps.map((e) => {
+            return <li key={e}>{e}</li>;
+          })}
+        </div>
+
         <button className="inputs" type="submit">
           Create Recipe
         </button>

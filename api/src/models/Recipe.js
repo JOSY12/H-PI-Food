@@ -25,9 +25,12 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       steps: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+        type: DataTypes.ARRAY(DataTypes.TEXT),
       },
+
+      // steps: {
+      //   type: DataTypes.TEXT
+      // },
       image: {
         type: DataTypes.STRING,
         allowNull: true,
