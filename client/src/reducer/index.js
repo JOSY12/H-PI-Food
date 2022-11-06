@@ -15,8 +15,8 @@ const initialstate = {
   searched: "",
   order: "",
   type: "",
-
   recipe: {},
+  healthScore: "",
 };
 
 const reducer = (state = initialstate, action) => {
@@ -64,7 +64,11 @@ const reducer = (state = initialstate, action) => {
               if (a.healthScore < b.healthScore) return 1;
               else return -1;
             });
-      return { ...state, recipes: recypesByHealthScore, order: action.payload };
+      return {
+        ...state,
+        recipes: recypesByHealthScore,
+        healthScore: action.payload,
+      };
 
     default:
       return { ...state };

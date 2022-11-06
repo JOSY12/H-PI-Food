@@ -1,7 +1,4 @@
-// Pagina inicial: deben armar una landing page con
-
-// [ ] Alguna imagen de fondo representativa al proyecto
-// [ ] Botón para ingresar al home (Ruta principal)
+import chef from "../../images/chefwhiet.jpg";
 
 import React from "react";
 import { Link } from "react-router-dom";
@@ -10,8 +7,12 @@ import "./Home.css";
 export default function Home() {
   return (
     <div className="homecontainer">
-      <Link className="link" to={"/recipes"}>
-        Recipe home page
+      <Link to={"/recipes"}>
+        <img className="itemimage" src={chef} alt=""></img>
+      </Link>
+
+      <Link className="homelink" to={"/recipes"}>
+        Recipes Home Page
       </Link>
     </div>
   );

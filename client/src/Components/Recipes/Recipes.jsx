@@ -5,8 +5,9 @@ import { useEffect } from "react";
 
 import "./Recipes.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Recipe from "../Recipe/Recipe";
+import { getrecipes } from "../../actions";
 
 export default function Recipes() {
   const recipes = useSelector((state) => state.recipes);
@@ -14,7 +15,7 @@ export default function Recipes() {
   const type = useSelector((state) => state.type);
   const healthScore = useSelector((state) => state.healthScore);
   const order = useSelector((state) => state.order);
-
+  const recipe = useSelector((state) => state.recipe);
   // const [itemsinpage, setitemsinpage] = useState(10);
   // const [items, setitems] = useState([...recipes].splice(0, itemsinpage));
   // const [actualpage, setcurrentpage] = useState(0);
@@ -37,8 +38,14 @@ export default function Recipes() {
   //   setitems([...recipes].splice(index, itemsinpage));
   //   setcurrentpage(prevpage);
   // }
-
-  useEffect(() => {}, [recipes, order, searched, healthScore]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("recipes reload");
+  }, [order, searched, healthScore, recipe]);
+  useEffect(() => {
+    dispatch(getrecipes());
+    console.log("recipes data charge");
+  }, []);
   const filtered =
     !type || type === "all"
       ? recipes.filter(
@@ -56,7 +63,7 @@ export default function Recipes() {
     <div className="recipegeneral">
       {/* <button onClick={prevpage}>prev</button>
       <button onClick={nextpage}>next</button> */}
-      {<li>{filtered.length}</li>}
+      {<li> {filtered.length} Results</li>}
       {filtered?.map((e, index) => {
         return (
           <Recipe

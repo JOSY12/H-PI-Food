@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 const { Router } = require("express");
 const { Recipe } = require("../db");
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 const diets = Router();
 diets.get("/diets", async (req, res) => {
   try {
@@ -17,6 +17,8 @@ diets.get("/diets", async (req, res) => {
       "whole 30",
       "pescatarian",
       "fodmap friendly",
+      "Vegetarian",
+      "Lacto vegetarian",
     ];
     const recipe = await Recipe.findAll();
     const filtered = recipe.filter((e) => e.diets.length);
@@ -28,5 +30,5 @@ diets.get("/diets", async (req, res) => {
     res.status(400).json({ msg: "no diets found" });
   }
 });
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = diets;

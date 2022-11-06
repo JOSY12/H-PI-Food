@@ -8,13 +8,11 @@ import "./Recipedetail.css";
 export default function Recipedetail() {
   var { id } = useParams();
   const dispatch = useDispatch();
-  console.log(id);
+
   const recipe = useSelector((state) => state.recipe);
   useEffect(() => {
     dispatch(getrecipe(id));
   }, []);
-
-  console.log(recipe);
 
   return (
     <div className="detailcontainer">
@@ -64,19 +62,11 @@ export default function Recipedetail() {
             {recipe.summary}
           </li>
 
-          <br></br>
           <li className="detailli">
-            <h1 className="detailli">
-              Steps: <hr></hr>
-            </h1>
+            <h1 className="detailli">Steps:</h1>
             <ul className="detailli">
               {recipe.steps?.map((e, i) => {
-                return (
-                  <li key={e}>
-                    step{i + 1}
-                    <hr></hr>:{e}
-                  </li>
-                );
+                return <li key={e}>step {e}</li>;
               })}
             </ul>
           </li>
@@ -85,12 +75,3 @@ export default function Recipedetail() {
     </div>
   );
 }
-// Ruta de detalle de receta: debe contener
-
-// [ x] Los campos mostrados en la ruta principal para cada receta (imagen, nombre, tipo de plato y tipo de dieta)
-// [ x] Resumen del plato
-// [x ] Nivel de "comida saludable" (health score)
-// [x ] Paso a paso
-// diets.map((e) => {
-//   return <li className="detailli"> {e}</li>;
-// });

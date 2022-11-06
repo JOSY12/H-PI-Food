@@ -1,20 +1,36 @@
 .homecontainer {
-  padding: 25%;
-  display: flex;
+  padding: 5px 0px 25% 0px;
+  display: grid;
   justify-content: center;
   text-decoration: none;
-  list-style: none;
+
   text-align: center;
   background-color: #efefef;
   background-image: url("https://live.staticflickr.com/65535/50813570567_f69b84c427_b.jpg");
   background-size: cover;
+  transition: 5s;
+  transition-delay: 5s;
+}
 
-  text-indent: none;
-  .link {
-    font-size: 40px;
+.homelink {
+  font-size: 40px;
+  margin: 50px;
+  text-decoration: none;
+  background-color: #efefef;
+  border-radius: 50%;
+  transition: 1s;
+}
+.homelink:hover {
+  background-color: wheat;
+}
+.itemimage {
+  text-decoration: none;
+  margin: 50px;
+  border-radius: 100%;
+  transition: 1s;
+}
 
-    text-decoration: none;
-
-    border-radius: 5px;
-  }
+.homecontainer:hover {
+  background-image: url("https://esmmweighless.com/wp-content/uploads/2019/12/Carolyn-Cooking-Blog.jpg");
+  background-size: cover;
 }

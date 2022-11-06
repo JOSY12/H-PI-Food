@@ -59,11 +59,3 @@ export default function Recipe({
     </div>
   );
 }
-
-//   diets.map((e, index) => {
-//     return (
-//       <li key={index} className="recipedatali">
-//         🥗{e}
-//       </li>
-//     );
-//   });

@@ -82,16 +82,18 @@ export default function Searchbar() {
         <option value="dairy free">dairy free</option>
         <option value="Gluten Free">Gluten Free</option>
         <option value="Ketogenic">Ketogenic</option>
-        <option value="Lacto ovo Vegetarian">Lacto Vegetarian</option>
+        <option value="Lacto ovo Vegetarian">Lacto ovo Vegetarian</option>
+        <option value="Lacto Vegetarian">Lacto Vegetarian</option>
         <option value="pescatarian">Pescetarian</option>
-        <option value="paleolithic">Paleo</option>
+        <option value="paleolithic">paleolithic</option>
         <option value="Ovo Vegetarian">Ovo Vegetarian</option>
         <option value="fodmap friendly">Low FODMAP</option>
         <option value="Primal">Primal</option>
         <option value="Whole 30">Whole30</option>
+        <option value="Vegetarian">Vegetarian</option>
       </select>
       {/* /////////////////////////////////////////////////////////////// */}
-      <label className="itemfilter">HealthScore</label>
+      <label className="itemfilter">-----</label>
 
       {/* /////////////////////////////////////////////////////////////// */}
       <input
