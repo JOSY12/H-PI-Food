@@ -7,8 +7,8 @@ import { createrecipe } from "../../actions";
 
 export default function RecipeCreator() {
   const dispatch = useDispatch();
-  const recipes = useSelector((state) => state.recipes);
 
+  const [errors, seterrors] = useState({});
   const [inputs, setinputs] = useState({
     title: "",
     summary: "",
@@ -57,7 +57,7 @@ export default function RecipeCreator() {
       alert("recipe created succesfully");
     }
   }
-  const handleSteps = (e) => {
+  const handleSteps = () => {
     if (inputs.listSteps.length) {
       setinputs({
         ...inputs,
@@ -66,17 +66,55 @@ export default function RecipeCreator() {
       });
     }
   };
+
+  function validate(input) {
+    let errors = {};
+    if (!input.title) {
+      errors.title = "title is required";
+    } else if (input.title.length <= 10) {
+      errors.title = "title is too short";
+    } else if (input.title.length >= 50) {
+      errors.title = "title is too long";
+    }
+    if (!input.summary) {
+      errors.summary = "summary is required";
+    } else if (input.summary.length <= 50) {
+      errors.summary = "summary is too short";
+    } else if (input.summary.length >= 500) {
+      errors.summary = "summary is too long";
+    }
+
+    if (!input.healthScore || input.healthScore <= 0) {
+      errors.healthScore = "healthScore value  is required";
+    }
+
+    // if (!inputs.image || inputs.image <= 0 || inputs.image.includes(" ")) {
+    //   errors.image = "invalid recipe image";
+    // }
+    // if (!input.diets) {
+    //   errors.diets = "atleast one diet is required";
+    // }
+    // if (!input.dishTypes) {
+    //   errors.dishTypes = "atleast one dishType is required";
+    // }
+    // if (!input.steps ) {
+    //   errors.steps = "atleast one steps is required";
+    // }
+
+    return errors;
+  }
+
   function saverecipe(e) {
-    if (!inputs.image) {
+    if (!inputs.image || inputs.image.includes(" ") || inputs.image <= 0) {
       inputs.image =
         "http://www.destenaire.com/noaccess/wp-content/uploads/2014/10/8-Oddest-Food-Items-Featured-Image1.png";
     }
     const property = e.target.name;
     const value = e.target.value;
-
     setinputs({ ...inputs, [property]: value });
+    seterrors(validate({ ...inputs, [property]: value }));
   }
-
+  console.log(errors);
   return (
     <div className="recipecreator">
       <form className="inputsform" onSubmit={sendrecipe}>
@@ -88,9 +126,11 @@ export default function RecipeCreator() {
           onChange={saverecipe}
           name="title"
         ></input>
+        {errors.title && <p className="errors">{errors.title}</p>}
         <label className="formlabel">
           image url <small>Optional</small>
         </label>
+        {errors.image && <p className="errors">{errors.image}</p>}
         <input
           className="inputs"
           type={"text"}
@@ -100,7 +140,11 @@ export default function RecipeCreator() {
         ></input>
         <img className="inputs" src={inputs.image} alt="invalidfoodimage"></img>
 
-        <label className="formlabel">Recipe details, summary</label>
+        <label className="formlabel">
+          Recipe details, summary{" "}
+          {errors.summary && <p className="errors">{errors.summary}</p>}
+        </label>
+
         <textarea
           type="text"
           className="inputs"
@@ -111,6 +155,7 @@ export default function RecipeCreator() {
           rows="10"
           cols="50"
         ></textarea>
+
         <label className="formlabel">
           health score level: {inputs.healthScore} % healthy
           <meter
@@ -121,6 +166,7 @@ export default function RecipeCreator() {
             optimum="80"
             value={inputs.healthScore}
           ></meter>
+          {errors.healthScore && <p className="errors">{errors.healthScore}</p>}
         </label>
         <input
           onChange={saverecipe}
@@ -133,6 +179,7 @@ export default function RecipeCreator() {
         ></input>
 
         <label className="formlabel">diet type: </label>
+        {errors.diets && <p className="errors">{errors.diets}</p>}
         <select
           onClick={diets}
           className="inputs"
@@ -156,6 +203,7 @@ export default function RecipeCreator() {
           <option value="Vegetarian">Vegetarian</option>"
         </select>
         <label className="formlabel">dish Type: </label>
+        {errors.dishTypes && <p className="errors">{errors.dishTypes}</p>}
         <select
           className="inputs"
           multiple
@@ -172,16 +220,7 @@ export default function RecipeCreator() {
           <option value="dinner">dinner</option>
         </select>
         <label className="formlabel">steps</label>
-        {/* <textarea
-          value={inputs.steps}
-          onChange={saverecipe}
-          name="steps"
-          rows="10"
-          cols="50"
-          type="text"
-          className="inputs"
-          placeholder="recipe steps"
-        ></textarea> */}
+        {errors.steps && <p className="errors">{errors.steps}</p>}
         <input
           type="text"
           className="input-create"

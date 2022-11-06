@@ -11,7 +11,7 @@ recipes.get("/recipes", async (req, res) => {
     const localrecipes = await Recipe.findAll();
     if (!localrecipes.length) {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
       );
       response.data.results.map((recipe) => {
         Recipe.findOrCreate({
