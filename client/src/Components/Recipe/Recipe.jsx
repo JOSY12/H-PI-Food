@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleterecipe } from "../../actions";
 import "./Recipe.css";
 export default function Recipe({
   id,
@@ -8,6 +10,11 @@ export default function Recipe({
   dishTypes,
   healthScore,
 }) {
+  const dispatch = useDispatch();
+  function deleterecipes() {
+    dispatch(deleterecipe(id));
+  }
+
   return (
     <div className="recipecontainer">
       <Link to={`/recipes/${id}`}>
@@ -56,6 +63,9 @@ export default function Recipe({
           </ul>
         </ul>
       </Link>
+      <button className="deleteboton" onClick={deleterecipes}>
+        Delete
+      </button>
     </div>
   );
 }

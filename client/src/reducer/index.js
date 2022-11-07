@@ -8,6 +8,7 @@ import {
   FILTER_TYPE,
   FILTER_AZ_ZA,
   FILTER_HEALTHCORE,
+  DELETERECIPE,
 } from "../actions";
 
 const initialstate = {
@@ -69,7 +70,11 @@ const reducer = (state = initialstate, action) => {
         recipes: recypesByHealthScore,
         healthScore: action.payload,
       };
-
+    case DELETERECIPE:
+      return {
+        ...state,
+        recipes: state.recipes.filter((e) => e.id !== action.payload),
+      };
     default:
       return { ...state };
   }

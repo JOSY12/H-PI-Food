@@ -93,7 +93,7 @@ export default function Searchbar() {
         <option value="Vegetarian">Vegetarian</option>
       </select>
       {/* /////////////////////////////////////////////////////////////// */}
-      <label className="itemfilter">-----</label>
+      <label>-----</label>
 
       {/* /////////////////////////////////////////////////////////////// */}
       <input
@@ -104,6 +104,7 @@ export default function Searchbar() {
         onChange={savefilter}
         type="text"
       ></input>
+      <label>-----</label>
       {/* /////////////////////////////////////////////////////////////// */}
       <button className="itemfilter" onClick={sendwords}>
         Search

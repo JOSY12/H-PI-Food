@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "./RecipeCreator.css";
 import { createrecipe } from "../../actions";
@@ -9,7 +9,7 @@ export default function RecipeCreator() {
   const dispatch = useDispatch();
 
   const [Errors, setErrors] = useState({});
-
+  const [disabler, setseter] = useState(Errors);
   const [inputs, setinputs] = useState({
     title: "",
     summary: "",
@@ -130,7 +130,7 @@ export default function RecipeCreator() {
     setinputs({ ...inputs, [property]: value });
     setErrors(validate({ ...inputs, [property]: value }));
   }
-  console.log(Errors);
+
   return (
     <div className="recipecreator">
       <form className="inputsform" onSubmit={sendrecipe}>
@@ -244,16 +244,24 @@ export default function RecipeCreator() {
           value={inputs.listSteps}
           name="listSteps"
         />
-        <button className="btn-create" onClick={handleSteps} type="button">
+        <button className="inputs" onClick={handleSteps} type="button">
           Add
         </button>
         <div className="list-steps">
           {inputs.steps.map((e, i) => {
-            return <li key={i}>{e}</li>;
+            return (
+              <li className="formlabel" key={i}>
+                step {i + 1}:{e}
+              </li>
+            );
           })}
         </div>
 
-        <button className="inputs" type="submit">
+        <button
+          disabled={Errors.title || Errors.summary || Errors.healthScore}
+          className="inputs"
+          type="submit"
+        >
           Create Recipe
         </button>
       </form>

@@ -14,6 +14,13 @@
   flex-flow: column;
   flex-direction: column;
 }
+.detailcontainer .expolist {
+  color: #efefef;
+  display: flex;
+  margin: 0px;
+  padding-left: 10px;
+  flex-direction: row;
+}
 .detailcontainer .detailul {
   display: flex;
   flex-flow: column;
@@ -46,5 +53,6 @@
   color: #efefef;
   word-break: break-all;
   display: inline;
-  margin: 0px 0px 10px 10px;
+  margin: 0px 0px 10px 0px;
+  padding-left: 10px;
 }

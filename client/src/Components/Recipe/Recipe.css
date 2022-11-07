@@ -1,6 +1,5 @@
 .recipecontainer {
-  background-color: #cf3030;
-  display: flex;
+  display: grid;
   flex-direction: column;
   flex-flow: column;
   background-image: url("https://us.123rf.com/450wm/prettyvectors/prettyvectors1608/prettyvectors160800022/60532577-food-background-pattern-vector-flat-cartoon-illustration.jpg?ver=6");
@@ -58,4 +57,10 @@
   color: black;
   display: inline;
   font-size: 25px;
+}
+.recipecontainer .deleteboton {
+  background-color: cornsilk;
+}
+.recipecontainer .deleteboton:hover {
+  background-color: #cf3030;
 }

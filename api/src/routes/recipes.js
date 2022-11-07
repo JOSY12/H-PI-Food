@@ -11,7 +11,7 @@ recipes.get("/recipes", async (req, res) => {
     const localrecipes = await Recipe.findAll();
     if (!localrecipes.length) {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
       );
       response.data.results.map((recipe) => {
         Recipe.findOrCreate({
@@ -26,7 +26,7 @@ recipes.get("/recipes", async (req, res) => {
               ? recipe.analyzedInstructions[0].steps.map(
                   (recipe, i) => `${i + 1}: ${recipe.step}`
                 )
-              : ["No existen instrucciones"],
+              : ["no instruccions in this recipe"],
           },
           defaults: {
             title: recipe.title,
@@ -39,7 +39,7 @@ recipes.get("/recipes", async (req, res) => {
               ? recipe.analyzedInstructions[0].steps.map(
                   (recipe, i) => `${i + 1}: ${recipe.step}`
                 )
-              : ["No existen instrucciones"],
+              : ["no instruccions in this recipe"],
           },
         });
       });
@@ -81,6 +81,10 @@ recipes.get("/recipes/:id", async (req, res) => {
 recipes.post("/recipes", async (req, res) => {
   const { steps, title, summary, image, diets, healthScore, dishTypes } =
     req.body;
+
+  if ((!title, !summary, !healthScore)) {
+    res.status(400).json({ msg: "missing data" });
+  }
   try {
     const newrecipe = await Recipe.create({
       title: title,
@@ -91,12 +95,25 @@ recipes.post("/recipes", async (req, res) => {
       dishTypes: dishTypes,
       healthScore: healthScore,
     });
+
     res.status(200).json(newrecipe);
   } catch (error) {
     res.status(400).json({ msg: "no recipe created" });
   }
 });
+recipes.delete("/recipes/:id", async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    await Recipe.destroy({ where: { id: id } });
+    const alldata = await Recipe.findAll();
+
+    res.status(200).json(alldata);
+  } catch (error) {
+    res.status(400).json({ msg: "no recipe delete" });
+  }
+});
+////
 module.exports = recipes;
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////

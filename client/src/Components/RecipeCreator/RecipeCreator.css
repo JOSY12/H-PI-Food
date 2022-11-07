@@ -2,7 +2,7 @@
   padding: 0 0 15% 0;
   background-color: #efefef;
   background-image: url("https://static.vecteezy.com/system/resources/previews/004/275/702/original/fast-food-seamless-background-illustration-simple-restaurant-menu-background-vector.jpg");
-  background-repeat: repeat;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +30,6 @@
   color: white;
 }
 .recipecreator .Errors {
-  transition: 1s;
   display: flex;
   justify-content: center;
   margin: 0px;

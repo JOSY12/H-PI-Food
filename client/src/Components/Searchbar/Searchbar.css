@@ -4,6 +4,7 @@
   display: flex;
   padding: 5px;
   flex-flow: row;
+  justify-content: center;
   width: 100%;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmCoXKhygOvaNem2V701fYVmpOt69-wPDvlxOrxJ5WksSEZt8lYoOtZ9zSkzhzW2_Czh0&usqp=CAU");
   border: 1px solid red;

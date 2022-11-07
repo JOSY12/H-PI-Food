@@ -32,9 +32,17 @@ export default function Recipedetail() {
             <hr></hr>
           </li>
 
-          <li className="detailli">
+          <li className="expolist">
             <h1 className="detailli">Dish Types:</h1>
-            {recipe.dishTypes}
+            <ul className="detailli">
+              {recipe.dishTypes?.map((e, i) => {
+                return (
+                  <li className="detailli" key={i}>
+                    {e}{" "}
+                  </li>
+                );
+              })}
+            </ul>
           </li>
           <li className="detailli">
             <h1 className="detailli">HealthScore: </h1>
@@ -50,9 +58,17 @@ export default function Recipedetail() {
             )
           </li>
 
-          <li className="detailli">
+          <li className="expolist">
             <h1 className="detailli">Diets types: </h1>
-            {recipe.diets}
+            <ul className="detailli">
+              {recipe.diets?.map((e, i) => {
+                return (
+                  <li className="detailli" key={i}>
+                    {e}{" "}
+                  </li>
+                );
+              })}
+            </ul>
           </li>
 
           <li className="detailli">
@@ -66,7 +82,7 @@ export default function Recipedetail() {
             <h1 className="detailli">Steps:</h1>
             <ul className="detailli">
               {recipe.steps?.map((e, i) => {
-                return <li key={e}>step {e}</li>;
+                return <li key={i}>step {e}</li>;
               })}
             </ul>
           </li>

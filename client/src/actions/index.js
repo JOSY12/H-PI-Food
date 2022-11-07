@@ -8,11 +8,11 @@ export const FILTER_TYPE = "FILTER_TYPE";
 export const HEALTHSCORE_FILTER = "HEALTHSCORE_FILTER";
 export const FILTER_AZ_ZA = "FILTER_AZ_ZA";
 export const FILTER_HEALTHCORE = "FILTER_HEALTHCORE";
-
+export const DELETERECIPE = "DELETERECIPE";
 export const getrecipes = () => {
   return async function (dispatch) {
     const data = await axios.get(`http://localhost:3001/recipes`);
-
+    console.log(data.data);
     dispatch({ type: GET_RECIPES, payload: data.data });
   };
 };
@@ -79,5 +79,13 @@ export const getrecipeHealthScore = (health) => {
 export const horder = (health) => {
   return async function (dispatch) {
     dispatch({ type: FILTER_HEALTHCORE, payload: health });
+  };
+};
+
+export const deleterecipe = (id) => {
+  return async function (dispatch) {
+    await axios.delete(`http://localhost:3001/recipes/${id}`);
+
+    dispatch({ type: DELETERECIPE, payload: id });
   };
 };
