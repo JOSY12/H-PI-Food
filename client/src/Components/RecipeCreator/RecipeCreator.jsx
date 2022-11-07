@@ -8,7 +8,8 @@ import { createrecipe } from "../../actions";
 export default function RecipeCreator() {
   const dispatch = useDispatch();
 
-  const [errors, seterrors] = useState({});
+  const [Errors, setErrors] = useState({});
+
   const [inputs, setinputs] = useState({
     title: "",
     summary: "",
@@ -33,12 +34,17 @@ export default function RecipeCreator() {
   function sendrecipe(e) {
     e.preventDefault();
 
-    if (!inputs.summary || !inputs.title || !inputs.healthScore) {
+    if (
+      !inputs.summary ||
+      !inputs.title ||
+      !inputs.healthScore ||
+      Errors.healthScore
+    ) {
       alert("complete the recipe title, summary, healthScore");
-    } else if (inputs.title.includes(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) {
-      alert("title canot include numbers");
-    } else if (inputs.summary.length > 500) {
-      alert("summary canot include more than 500 characters");
+    } else if (Errors.title) {
+      alert("title is invalid");
+    } else if (inputs.summary.length > 500 || Errors.summary) {
+      alert("summary is invalid");
     } else {
       dispatch(
         createrecipe(
@@ -51,12 +57,12 @@ export default function RecipeCreator() {
           inputs.dishTypes
         )
       );
-
-      console.log(inputs);
+      console.log(inputs + "recipe created succesfully");
 
       alert("recipe created succesfully");
     }
   }
+
   const handleSteps = () => {
     if (inputs.listSteps.length) {
       setinputs({
@@ -68,40 +74,50 @@ export default function RecipeCreator() {
   };
 
   function validate(input) {
-    let errors = {};
+    let Errors = {};
     if (!input.title) {
-      errors.title = "title is required";
+      Errors.title = "title is required";
     } else if (input.title.length <= 10) {
-      errors.title = "title is too short";
+      Errors.title = "title is too short";
     } else if (input.title.length >= 50) {
-      errors.title = "title is too long";
+      Errors.title = "title is too long";
+    }
+    if (/\d|\\w|[~!@#$%{^&*()_:.=';[}|"`?>><]/gm.test(input.title)) {
+      Errors.title = "title is invalid";
     }
     if (!input.summary) {
-      errors.summary = "summary is required";
+      Errors.summary = "summary is required";
     } else if (input.summary.length <= 50) {
-      errors.summary = "summary is too short";
+      Errors.summary = "summary is too short";
     } else if (input.summary.length >= 500) {
-      errors.summary = "summary is too long";
+      Errors.summary = "summary is too long";
     }
-
     if (!input.healthScore || input.healthScore <= 0) {
-      errors.healthScore = "healthScore value  is required";
+      Errors.healthScore = "healthScore value  is required";
     }
-
-    // if (!inputs.image || inputs.image <= 0 || inputs.image.includes(" ")) {
-    //   errors.image = "invalid recipe image";
+    if (!inputs.image || inputs.image <= 0 || inputs.image.includes(" ")) {
+      Errors.image = "invalid recipe image";
+    }
+    //////////////////////////////////////////////
+    //expresiones posiblemente necesesarias
+    // if (/\d|\\w|[~!@#$%{^&*()_:.=';[}|"`?>><]/gm.test(input.summary)) {
+    //   Errors.summary = "summary is invalid";
     // }
+    // if (/\d|\\w|[~!@#$%{^&*()_:.=';[}|"`?>><]/gm.test(input.steps)) {
+    //   Errors.steps = "atleast one steps is required";
+    // }
+    //////////////////////////////////////////////
     // if (!input.diets) {
-    //   errors.diets = "atleast one diet is required";
+    //   Errors.diets = "atleast one diet is required";
     // }
     // if (!input.dishTypes) {
-    //   errors.dishTypes = "atleast one dishType is required";
+    //   Errors.dishTypes = "atleast one dishType is required";
     // }
     // if (!input.steps ) {
-    //   errors.steps = "atleast one steps is required";
+    //   Errors.steps = "atleast one steps is required";
     // }
 
-    return errors;
+    return Errors;
   }
 
   function saverecipe(e) {
@@ -112,9 +128,9 @@ export default function RecipeCreator() {
     const property = e.target.name;
     const value = e.target.value;
     setinputs({ ...inputs, [property]: value });
-    seterrors(validate({ ...inputs, [property]: value }));
+    setErrors(validate({ ...inputs, [property]: value }));
   }
-  console.log(errors);
+  console.log(Errors);
   return (
     <div className="recipecreator">
       <form className="inputsform" onSubmit={sendrecipe}>
@@ -126,11 +142,11 @@ export default function RecipeCreator() {
           onChange={saverecipe}
           name="title"
         ></input>
-        {errors.title && <p className="errors">{errors.title}</p>}
+        {Errors.title && <p className="Errors">{Errors.title}</p>}
         <label className="formlabel">
           image url <small>Optional</small>
         </label>
-        {errors.image && <p className="errors">{errors.image}</p>}
+        {Errors.image && <p className="Errors">{Errors.image}</p>}
         <input
           className="inputs"
           type={"text"}
@@ -142,7 +158,7 @@ export default function RecipeCreator() {
 
         <label className="formlabel">
           Recipe details, summary{" "}
-          {errors.summary && <p className="errors">{errors.summary}</p>}
+          {Errors.summary && <p className="Errors">{Errors.summary}</p>}
         </label>
 
         <textarea
@@ -166,7 +182,7 @@ export default function RecipeCreator() {
             optimum="80"
             value={inputs.healthScore}
           ></meter>
-          {errors.healthScore && <p className="errors">{errors.healthScore}</p>}
+          {Errors.healthScore && <p className="Errors">{Errors.healthScore}</p>}
         </label>
         <input
           onChange={saverecipe}
@@ -179,7 +195,7 @@ export default function RecipeCreator() {
         ></input>
 
         <label className="formlabel">diet type: </label>
-        {errors.diets && <p className="errors">{errors.diets}</p>}
+        {Errors.diets && <p className="Errors">{Errors.diets}</p>}
         <select
           onClick={diets}
           className="inputs"
@@ -203,7 +219,7 @@ export default function RecipeCreator() {
           <option value="Vegetarian">Vegetarian</option>"
         </select>
         <label className="formlabel">dish Type: </label>
-        {errors.dishTypes && <p className="errors">{errors.dishTypes}</p>}
+        {Errors.dishTypes && <p className="Errors">{Errors.dishTypes}</p>}
         <select
           className="inputs"
           multiple
@@ -220,7 +236,7 @@ export default function RecipeCreator() {
           <option value="dinner">dinner</option>
         </select>
         <label className="formlabel">steps</label>
-        {errors.steps && <p className="errors">{errors.steps}</p>}
+        {Errors.steps && <p className="Errors">{Errors.steps}</p>}
         <input
           type="text"
           className="input-create"

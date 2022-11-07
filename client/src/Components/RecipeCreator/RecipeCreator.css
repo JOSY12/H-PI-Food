@@ -29,7 +29,7 @@
   background-color: red;
   color: white;
 }
-.recipecreator .errors {
+.recipecreator .Errors {
   transition: 1s;
   display: flex;
   justify-content: center;
