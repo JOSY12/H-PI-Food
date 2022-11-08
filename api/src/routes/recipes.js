@@ -82,10 +82,10 @@ recipes.post("/recipes", async (req, res) => {
   const { steps, title, summary, image, diets, healthScore, dishTypes } =
     req.body;
 
-  if ((!title, !summary, !healthScore)) {
-    res.status(400).json({ msg: "missing data" });
-  }
   try {
+    if ((!title, !summary, !healthScore)) {
+      res.status(400).json({ msg: "missing data" });
+    }
     const newrecipe = await Recipe.create({
       title: title,
       summary: summary,

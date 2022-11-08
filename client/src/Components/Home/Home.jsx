@@ -14,6 +14,8 @@ export default function Home() {
       <Link className="homelink" to={"/recipes"}>
         Recipes Home Page
       </Link>
+
+      <footer className="footer">HENRY PI FOOD BY josmer uriel bertel</footer>
     </div>
   );
 }

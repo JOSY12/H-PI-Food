@@ -6,23 +6,23 @@ import "./App.css";
 import Recipes from "./Components/Recipes/Recipes";
 import Diets from "./Components/Diets/Diets";
 import Recipedetail from "./Components/Recipedetail/Recipedetail";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { getrecipes } from "./actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getrecipes } from "./actions";
 import RecipeCreator from "./Components/RecipeCreator/RecipeCreator";
 import Searchbar from "./Components/Searchbar/Searchbar";
 import Home from "./Components/Home/Home";
 export default function App() {
-  // const dispatch = useDispatch();
-  // const recipes = useSelector((state) => state.recipes);
-  // useEffect(() => {
-  //   if (!recipes.length) {
-  //     dispatch(getrecipes());
-  //     console.log("loaded data app");
-  //   } else {
-  //     console.log("reloaded app");
-  //   }
-  // }, []);
+  const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes);
+  useEffect(() => {
+    if (!recipes.length) {
+      dispatch(getrecipes());
+      console.log("loaded data app");
+    } else {
+      console.log("reloaded app");
+    }
+  }, []);
   return (
     <>
       <Route exact path={"/"}>

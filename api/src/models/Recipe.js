@@ -51,13 +51,3 @@ module.exports = (sequelize) => {
     { timestamps: false }
   );
 };
-
-// [ x] Receta con las siguientes propiedades:
-// ID: *
-// Nombre *
-// Resumen del plato *
-// Nivel de "comida saludable" (health score)
-// Paso a paso
-// [ x] Tipo de dieta con las siguientes propiedades:
-// ID
-// Nombre

@@ -106,7 +106,7 @@ export default function RecipeCreator() {
     // if (/\d|\\w|[~!@#$%{^&*()_:.=';[}|"`?>><]/gm.test(input.steps)) {
     //   Errors.steps = "atleast one steps is required";
     // }
-    //////////////////////////////////////////////
+    // ////////////////////////////////////////////
     // if (!input.diets) {
     //   Errors.diets = "atleast one diet is required";
     // }
@@ -258,7 +258,9 @@ export default function RecipeCreator() {
         </div>
 
         <button
-          disabled={Errors.title || Errors.summary || Errors.healthScore}
+          disabled={
+            Errors.title || Errors.summary || Errors.healthScore | Errors.image
+          }
           className="inputs"
           type="submit"
         >

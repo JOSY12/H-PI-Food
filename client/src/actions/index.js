@@ -9,14 +9,15 @@ export const HEALTHSCORE_FILTER = "HEALTHSCORE_FILTER";
 export const FILTER_AZ_ZA = "FILTER_AZ_ZA";
 export const FILTER_HEALTHCORE = "FILTER_HEALTHCORE";
 export const DELETERECIPE = "DELETERECIPE";
+///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipes = () => {
   return async function (dispatch) {
     const data = await axios.get(`http://localhost:3001/recipes`);
-    console.log(data.data);
+
     dispatch({ type: GET_RECIPES, payload: data.data });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipe = (id) => {
   return async function (dispatch) {
     const data = await axios.get(`http://localhost:3001/recipes/${id}`);
@@ -24,7 +25,7 @@ export const getrecipe = (id) => {
     dispatch({ type: GET_RECIPE, payload: data.data });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const createrecipe = (
   steps,
   title,
@@ -51,37 +52,37 @@ export const createrecipe = (
     dispatch({ type: CREATE_RECIPE, payload: newrecipe });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipefilter = (searched) => {
   return async function (dispatch) {
     dispatch({ type: FILTER_RECIPE, payload: searched });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipetype = (type) => {
   return async function (dispatch) {
     dispatch({ type: FILTER_TYPE, payload: type });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const filterasc_des = (order) => {
   return async function (dispatch) {
     dispatch({ type: FILTER_AZ_ZA, payload: order });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipeHealthScore = (health) => {
   return async function (dispatch) {
     dispatch({ type: HEALTHSCORE_FILTER, payload: health });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const horder = (health) => {
   return async function (dispatch) {
     dispatch({ type: FILTER_HEALTHCORE, payload: health });
   };
 };
-
+///////////////////////////////////////////////////////////////////////////////////////
 export const deleterecipe = (id) => {
   return async function (dispatch) {
     await axios.delete(`http://localhost:3001/recipes/${id}`);
@@ -89,3 +90,4 @@ export const deleterecipe = (id) => {
     dispatch({ type: DELETERECIPE, payload: id });
   };
 };
+///////////////////////////////////////////////////////////////////////////////////////

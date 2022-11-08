@@ -32,6 +32,7 @@ export default function Searchbar() {
     dispatch(horder(inputs.HealthScore));
   }
   function sendwords(e) {
+    // setinputs({ ...inputs, searched: e.target.value });
     dispatch(getrecipefilter(inputs.searched));
   }
   function savefilter(e) {

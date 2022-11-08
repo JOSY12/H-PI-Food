@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 const { Router } = require("express");
-const { Recipe } = require("../db");
+const { Recipe, Diet } = require("../db");
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 const diets = Router();
 diets.get("/diets", async (req, res) => {
@@ -30,5 +31,15 @@ diets.get("/diets", async (req, res) => {
     res.status(400).json({ msg: "no diets found" });
   }
 });
+
+// diets.get("/test", async (req, res) => {
+//   try {
+//     const recipes = await Diet.findAll();
+
+//     res.status(200).json(recipes);
+//   } catch (error) {
+//     res.status(400).json({ msg: "no diets found" });
+//   }
+// });
 ///////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = diets;
