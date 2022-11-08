@@ -46,7 +46,7 @@ export default function Recipes() {
 
   useEffect(() => {
     console.log("recipes reload");
-  }, [searched, healthScore, recipe]);
+  }, [searched, healthScore, recipe, order]);
   useEffect(() => {
     dispatch(getrecipes());
     console.log("recipes data charge");
@@ -68,6 +68,8 @@ export default function Recipes() {
     <div className="recipegeneral">
       {/* <button onClick={prevpage}>prev</button>
       <button onClick={nextpage}>next</button> */}
+
+      {/* //////////////////////////////////////////////////////////////////////////////////////// */}
       {
         <li>
           {filtered.length} Results: {searched} {type}
