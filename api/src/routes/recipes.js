@@ -6,10 +6,10 @@ const { API_KEY, API_KEY1 } = process.env;
 const recipes = Router();
 ///////////////////////////////////////////////////////////////////////////////////////////////
 recipes.get("/recipes", async (req, res) => {
-  const { title } = req.query;
+  // const { title } = req.query;
+  const localrecipes = await Recipe.findAll();
   try {
-    const localrecipes = await Recipe.findAll();
-    if (!localrecipes.length) {
+    if (!localrecipes.length || localrecipes.length < 50) {
       const response = await axios.get(
         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
       );
@@ -47,19 +47,9 @@ recipes.get("/recipes", async (req, res) => {
       const localrecipes = await Recipe.findAll();
       if (localrecipes.length) {
         res.status(200).json(localrecipes);
-      } else {
-        res.status(400).json({ msg: "no recipes or query found " });
       }
     } else {
-      if (title && localrecipes.length) {
-        const filterd = localrecipes.filter((e) =>
-          e.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
-        );
-        res.status(200).json(filterd);
-      }
-      if (!title) {
-        res.status(200).json(localrecipes);
-      }
+      res.status(200).json(localrecipes);
     }
   } catch (error) {
     res.status(400).json({ msg: "no recipes or query found " });
