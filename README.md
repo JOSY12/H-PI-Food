@@ -5,14 +5,20 @@
  ![pifood](https://user-images.githubusercontent.com/66582514/201798466-bd7efef8-7f33-4658-bed2-e4270b9aa1a9.png)
 
 react versions:
-
+ 
 - **react**: 17.0.1
 - **react-dom**: 17.0.1
 - **react-router-dom**: 5.2.0
 - **redux**: 4.0.5
 - **react-redux**: 7.2.3
-
-
+<hr></hr>
+Tecnologies needed and used:
+- [ ] React
+- [ ] Redux
+- [ ] Express
+- [ ] Sequelize - Postgres
+- [ ] css
+- [ ] less
 <hr></hr>
 
 - search for recipes  
@@ -46,16 +52,5 @@ react versions:
 
  ![detail](https://user-images.githubusercontent.com/66582514/201799242-92b364f4-70a2-4612-b5d2-3e9be3d1360b.png)
 
-<hr></hr>
-
-Tecnologies needed
-- [ ] React
-- [ ] Redux
-- [ ] Express
-- [ ] Sequelize - Postgres
-- [ ] css
-- [ ] less
-
-<hr></hr>
 
  
