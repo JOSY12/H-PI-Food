@@ -2,7 +2,7 @@
 const { Router } = require("express");
 const { Recipe } = require("../db");
 const axios = require("axios");
-const { API_KEY, API_KEY1 } = process.env;
+const API_KEY1 = process.env.API_KEY1;
 const recipes = Router();
 ///////////////////////////////////////////////////////////////////////////////////////////////
 recipes.get("/recipes", async (req, res) => {
