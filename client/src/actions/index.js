@@ -9,8 +9,8 @@ export const HEALTHSCORE_FILTER = "HEALTHSCORE_FILTER";
 export const FILTER_AZ_ZA = "FILTER_AZ_ZA";
 export const FILTER_HEALTHCORE = "FILTER_HEALTHCORE";
 export const DELETERECIPE = "DELETERECIPE";
-// axios.defaults.baseURL = "http://localhost:7923";
-axios.defaults.baseURL = "Pi-food-Josy.up.railway.app/";
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://pifoodbackendjosy.up.railway.app/";
 ///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipes = () => {
   return async function (dispatch) {
