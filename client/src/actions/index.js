@@ -12,7 +12,7 @@ export const DELETERECIPE = "DELETERECIPE";
 ///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipes = () => {
   return async function (dispatch) {
-    const data = await axios.get(`http://localhost:3001/recipes`);
+    const data = await axios.get(`/recipes`);
 
     dispatch({ type: GET_RECIPES, payload: data.data });
   };
@@ -20,7 +20,7 @@ export const getrecipes = () => {
 ///////////////////////////////////////////////////////////////////////////////////////
 export const getrecipe = (id) => {
   return async function (dispatch) {
-    const data = await axios.get(`http://localhost:3001/recipes/${id}`);
+    const data = await axios.get(`/recipes/${id}`);
 
     dispatch({ type: GET_RECIPE, payload: data.data });
   };
@@ -45,10 +45,7 @@ export const createrecipe = (
     steps: steps,
   };
   return async function (dispatch) {
-    const response = await axios.post(
-      "http://localhost:3001/recipes",
-      newrecipe
-    );
+    const response = await axios.post("/recipes", newrecipe);
     dispatch({ type: CREATE_RECIPE, payload: newrecipe });
   };
 };
@@ -85,7 +82,7 @@ export const horder = (health) => {
 ///////////////////////////////////////////////////////////////////////////////////////
 export const deleterecipe = (id) => {
   return async function (dispatch) {
-    await axios.delete(`http://localhost:3001/recipes/${id}`);
+    await axios.delete(`/recipes/${id}`);
 
     dispatch({ type: DELETERECIPE, payload: id });
   };

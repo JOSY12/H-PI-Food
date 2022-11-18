@@ -15,13 +15,13 @@ const recipeSlice = createSlice({
   initialstate,
   reducers: {
     getrecipes: async (state) => {
-      const data = await axios.get(`http://localhost:3001/recipes`);
+      const data = await axios.get(`/recipes`);
 
       state.recipes = data.data;
     },
 
     getrecipe: async (state, { payload }) => {
-      const data = await axios.get(`http://localhost:3001/recipes/${payload}`);
+      const data = await axios.get(`/recipes/${payload}`);
 
       state.recipe = data.data;
     },
@@ -36,7 +36,7 @@ const recipeSlice = createSlice({
         dishTypes: payload.dishTypes,
         steps: payload.steps,
       };
-      await axios.post("http://localhost:3001/recipes", newrecipe);
+      await axios.post("/recipes", newrecipe);
       state.recipes = [...state.recipes, newrecipe];
     },
 
@@ -80,7 +80,7 @@ const recipeSlice = createSlice({
       state.healthScore = action.payload;
     },
     deleterecipe: async (state, { payload }) => {
-      await axios.delete(`http://localhost:3001/recipes/${payload}`);
+      await axios.delete(`/recipes/${payload}`);
 
       state.recipes = state.recipes.filter((e) => e.id !== payload);
     },
