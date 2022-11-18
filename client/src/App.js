@@ -19,8 +19,6 @@ export default function App() {
     if (!recipes.length) {
       dispatch(getrecipes());
       console.log("loaded data app");
-    } else {
-      console.log("reloaded app");
     }
   }, []);
   return (
